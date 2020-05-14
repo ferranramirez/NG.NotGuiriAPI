@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9D3848E4-2F34-4E18-A022-D7566CA4FD61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F40B83DF-879C-4269-AE88-4DB572A9E75E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NG.NotGuiriAPI.Presentation.WebAPI", "src\NG.NotGuiriAPI.Presentation.WebAPI\NG.NotGuiriAPI.Presentation.WebAPI.csproj", "{7657C946-837F-4D13-8C1C-2854401E8F79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NG.NotGuiriAPI.Business.Contract", "src\NG.NotGuiriAPI.Business.Contract\NG.NotGuiriAPI.Business.Contract.csproj", "{FC35A25E-C7F7-4C6C-867E-314D82A0911C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NG.NotGuiriAPI.Business.Impl", "src\NG.NotGuiriAPI.Business.Impl\NG.NotGuiriAPI.Business.Impl.csproj", "{940897E6-886D-450E-A123-2FFA602A03E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NG.NotGuiriAPI.Domain.Model", "NG.NotGuiriAPI.Domain.Model\NG.NotGuiriAPI.Domain.Model.csproj", "{44F3D11B-D20B-4860-9952-21DE67A2D390}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{E6A7BFF2-DB20-4576-93AB-AB5C51103F49}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{2A902468-8B44-45AC-B2E2-C3DF5971D4DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7657C946-837F-4D13-8C1C-2854401E8F79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7657C946-837F-4D13-8C1C-2854401E8F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7657C946-837F-4D13-8C1C-2854401E8F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7657C946-837F-4D13-8C1C-2854401E8F79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC35A25E-C7F7-4C6C-867E-314D82A0911C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC35A25E-C7F7-4C6C-867E-314D82A0911C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC35A25E-C7F7-4C6C-867E-314D82A0911C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC35A25E-C7F7-4C6C-867E-314D82A0911C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{940897E6-886D-450E-A123-2FFA602A03E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{940897E6-886D-450E-A123-2FFA602A03E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{940897E6-886D-450E-A123-2FFA602A03E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{940897E6-886D-450E-A123-2FFA602A03E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44F3D11B-D20B-4860-9952-21DE67A2D390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44F3D11B-D20B-4860-9952-21DE67A2D390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44F3D11B-D20B-4860-9952-21DE67A2D390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44F3D11B-D20B-4860-9952-21DE67A2D390}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7657C946-837F-4D13-8C1C-2854401E8F79} = {E6A7BFF2-DB20-4576-93AB-AB5C51103F49}
+		{FC35A25E-C7F7-4C6C-867E-314D82A0911C} = {2A902468-8B44-45AC-B2E2-C3DF5971D4DD}
+		{940897E6-886D-450E-A123-2FFA602A03E9} = {2A902468-8B44-45AC-B2E2-C3DF5971D4DD}
+		{44F3D11B-D20B-4860-9952-21DE67A2D390} = {9D3848E4-2F34-4E18-A022-D7566CA4FD61}
+		{E6A7BFF2-DB20-4576-93AB-AB5C51103F49} = {9D3848E4-2F34-4E18-A022-D7566CA4FD61}
+		{2A902468-8B44-45AC-B2E2-C3DF5971D4DD} = {9D3848E4-2F34-4E18-A022-D7566CA4FD61}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A563C31-DC8F-431C-8E67-D054F5EF2A3D}
+	EndGlobalSection
+EndGlobal
