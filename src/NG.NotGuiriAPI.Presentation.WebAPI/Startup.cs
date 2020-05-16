@@ -32,6 +32,8 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
                 c.IncludeXmlComments(xmlPath);
             });
 
+            var connString = Configuration.GetConnectionString("Default");
+
             services.AddBusinessServices();
         }
 
@@ -48,6 +50,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "NotGuiriAPI");
+                c.DocumentTitle = "Not Guiri API";
             });
 
             app.UseHttpsRedirection();

@@ -19,7 +19,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieve all the nodes by their tour Id
+        /// Retrieves a Tour by its tour Id
         /// </summary>
         /// <param name="Id">The Id of the desired Tour</param>
         /// <remarks>
@@ -28,7 +28,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// - 500 - An internal server error. Something bad and unexpected happened.
         /// </remarks>
         /// <returns>A Tour</returns>
-        [HttpGet("Nodes/{Id}")]
+        [HttpGet("{Id}")]
         [ProducesResponseType(typeof(Tour), 200)]
         [ProducesResponseType(typeof(string), 500)]
         public IActionResult Get(Guid Id)
@@ -53,7 +53,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// - 500 - An internal server error. Something bad and unexpected happened.
         /// </remarks>
         /// <returns>A List of Nodes</returns>
-        [HttpGet("{Id}")]
+        [HttpGet("Nodes/{Id}")]
         [ProducesResponseType(typeof(IEnumerable<Node>), 200)]
         [ProducesResponseType(typeof(string), 500)]
         public IActionResult GetNodes(Guid Id)
