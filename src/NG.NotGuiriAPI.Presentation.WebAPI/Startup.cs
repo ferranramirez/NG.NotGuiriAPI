@@ -3,11 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using NG.NotGuiriAPI.Business.Impl.IoCModule;
-using System;
-using System.IO;
-using System.Reflection;
+using NG.NotGuiriAPI.Presentation.WebAPI.Extensions;
 
 namespace NG.NotGuiriAPI.Presentation.WebAPI
 {
@@ -24,15 +21,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
         {
             services.AddControllers();
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NotGuiriAPI", Version = "v1", });
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-            });
+            services.AddJwtAuthentication(Configuration);
 
-            var connString = Configuration.GetConnectionString("Default");
+            services.AddSwaggerDocumentation();
 
             services.AddBusinessServices();
         }
@@ -45,17 +36,13 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger();
-
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "NotGuiriAPI");
-                c.DocumentTitle = "Not Guiri API";
-            });
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseSwaggerDocumentation();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using NG.DBManager.Infrastructure.Contracts.UnitsOfWork;
 using NG.DBManager.Infrastructure.Impl.EF.IoCModule;
+using NG.DBManager.Infrastructure.Impl.EF.UnitsOfWork;
 using NG.NotGuiriAPI.Business.Contract;
 using System;
 
@@ -16,6 +18,7 @@ namespace NG.NotGuiriAPI.Business.Impl.IoCModule
             }
 
             services.AddInfrastructureServices()
+                    .AddScoped<IAPIUnitOfWork, APIUnitOfWork>()
                     .AddScoped<ITourService, TourService>()
                     .AddScoped<INodeService, NodeService>()
                     .AddScoped<ICouponService, CouponService>()

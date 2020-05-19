@@ -7,9 +7,9 @@ namespace NG.NotGuiriAPI.Business.Impl
 {
     public class CouponService : ICouponService
     {
-        public readonly IUnitOfWork _unitOfWork;
+        public readonly IAPIUnitOfWork _unitOfWork;
 
-        public CouponService(IUnitOfWork unitOfWork)
+        public CouponService(IAPIUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

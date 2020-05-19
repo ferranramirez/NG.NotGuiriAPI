@@ -9,9 +9,9 @@ namespace NG.NotGuiriAPI.Business.Impl
 {
     public class TourService : ITourService
     {
-        public readonly IUnitOfWork _unitOfWork;
+        public readonly IAPIUnitOfWork _unitOfWork;
 
-        public TourService(IUnitOfWork unitOfWork)
+        public TourService(IAPIUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

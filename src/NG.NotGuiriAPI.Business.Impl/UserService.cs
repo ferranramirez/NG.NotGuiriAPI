@@ -7,9 +7,9 @@ namespace NG.NotGuiriAPI.Business.Impl
 {
     public class UserService : IUserService
     {
-        public readonly IUnitOfWork _unitOfWork;
+        public readonly IAPIUnitOfWork _unitOfWork;
 
-        public UserService(IUnitOfWork unitOfWork)
+        public UserService(IAPIUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

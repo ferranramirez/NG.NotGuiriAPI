@@ -7,9 +7,9 @@ namespace NG.NotGuiriAPI.Business.Impl
 {
     public class NodeService : INodeService
     {
-        public readonly IUnitOfWork _unitOfWork;
+        public readonly IAPIUnitOfWork _unitOfWork;
 
-        public NodeService(IUnitOfWork unitOfWork)
+        public NodeService(IAPIUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
