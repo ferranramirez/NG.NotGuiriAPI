@@ -4,6 +4,6 @@ namespace NG.NotGuiriAPI.Business.Contract
 {
     public interface ICouponService
     {
-        bool Add(Coupon coupon);
+        System.Threading.Tasks.Task<bool> Add(Coupon coupon);
     }
 }

@@ -14,11 +14,11 @@ namespace NG.NotGuiriAPI.Business.Impl
             _unitOfWork = unitOfWork;
         }
 
-        public bool Add(Coupon coupon)
+        public async System.Threading.Tasks.Task<bool> Add(Coupon coupon)
         {
             coupon.Id = Guid.NewGuid();
             _unitOfWork.Repository<Coupon>().Add(coupon);
-            return _unitOfWork.Commit() == 1;
+            return await _unitOfWork.CommitAsync() == 1;
         }
     }
 }

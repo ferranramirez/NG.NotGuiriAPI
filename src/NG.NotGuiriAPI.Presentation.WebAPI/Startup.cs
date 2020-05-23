@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NG.Common.Presentation.Extensions;
+using NG.Common.Presentation.Filters;
 using NG.NotGuiriAPI.Business.Impl.IoCModule;
-using NG.NotGuiriAPI.Presentation.WebAPI.Extensions;
+using System.Reflection;
 
 namespace NG.NotGuiriAPI.Presentation.WebAPI
 {
@@ -21,9 +23,15 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
         {
             services.AddControllers();
 
-            services.AddJwtAuthentication(Configuration);
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            services.AddSwaggerDocumentation(Configuration.GetSection("Documentation"), xmlFile);
 
-            services.AddSwaggerDocumentation();
+            services.AddJwtAuthentication(Configuration.GetSection("Secrets"));
+
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(ApiExceptionFilter));
+            });
 
             services.AddBusinessServices();
         }
@@ -40,7 +48,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
 
             app.UseRouting();
 
-            app.UseSwaggerDocumentation();
+            app.UseSwaggerDocumentation(Configuration.GetSection("Documentation"));
 
             app.UseAuthentication();
 

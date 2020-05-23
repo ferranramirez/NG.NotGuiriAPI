@@ -2,9 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
-  
-  <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   
@@ -13,7 +10,28 @@
     <ProjectReference Include="..\NG.NotGuiriAPI.Business.Impl\NG.NotGuiriAPI.Business.Impl.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup Label="Startup">
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.6.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
+  </ItemGroup>
+
+  <ItemGroup Label="Serilog">
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
+    <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="8.1.0" />
+  </ItemGroup>
+
   <ItemGroup>
+    <Reference Include="NG.Common.Business">
+      <HintPath>..\..\..\NG.Common\src\NG.Common.Presentation\bin\Debug\netcoreapp3.1\NG.Common.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="NG.Common.Presentation">
+      <HintPath>..\..\..\NG.Common\src\NG.Common.Presentation\bin\Debug\netcoreapp3.1\NG.Common.Presentation.dll</HintPath>
+    </Reference>
     <Reference Include="NG.DBManager.Infrastructure.Contracts">
       <HintPath>..\..\..\NG.DBManager\src\NG.DBManager.Infrastructure.Impl.EF\bin\Debug\netcoreapp3.1\NG.DBManager.Infrastructure.Contracts.dll</HintPath>
     </Reference>
@@ -21,11 +39,5 @@
       <HintPath>..\..\..\NG.DBManager\src\NG.DBManager.Infrastructure.Impl.EF\bin\Debug\netcoreapp3.1\NG.DBManager.Infrastructure.Impl.EF.dll</HintPath>
     </Reference>
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc2" />
-  </ItemGroup>
-
-
+  
 </Project>
