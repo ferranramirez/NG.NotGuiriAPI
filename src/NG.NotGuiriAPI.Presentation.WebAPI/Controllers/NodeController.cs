@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NG.Common.Presentation.Filters;
 using NG.DBManager.Infrastructure.Contracts.Models;
 using NG.NotGuiriAPI.Business.Contract;
 using System;
+using System.Net;
 
 namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
 {
@@ -28,8 +30,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </remarks>
         /// <returns>A Node</returns>
         [HttpGet("{Id}")]
-        [ProducesResponseType(typeof(Node), 200)]
-        [ProducesResponseType(typeof(string), 500)]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(Node), (int)HttpStatusCode.OK)]
         public IActionResult Get(Guid Id)
         {
             if (!ModelState.IsValid)

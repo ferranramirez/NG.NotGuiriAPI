@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NG.Common.Presentation.Filters;
 using NG.DBManager.Infrastructure.Contracts.Models;
 using NG.NotGuiriAPI.Business.Contract;
+using System.Net;
 
 namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
 {
@@ -27,8 +29,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </remarks>
         /// <returns>A bool</returns>
         [HttpPost("{Id}")]
-        [ProducesResponseType(typeof(Coupon), 200)]
-        [ProducesResponseType(typeof(string), 500)]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
         public IActionResult Add([FromBody] Coupon NewCoupon)
         {
             if (!ModelState.IsValid)

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NG.Common.Presentation.Filters;
 using NG.DBManager.Infrastructure.Contracts.Models;
 using NG.NotGuiriAPI.Business.Contract;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
@@ -30,8 +32,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </remarks>
         /// <returns>A Tour</returns>
         [HttpGet("{Id}")]
-        [ProducesResponseType(typeof(Tour), 200)]
-        [ProducesResponseType(typeof(string), 500)]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(Tour), (int)HttpStatusCode.OK)]
         public IActionResult Get(Guid Id)
         {
             if (!ModelState.IsValid)
@@ -56,8 +59,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </remarks>
         /// <returns>A List of Nodes</returns>
         [HttpGet("Nodes/{Id}")]
-        [ProducesResponseType(typeof(IEnumerable<Node>), 200)]
-        [ProducesResponseType(typeof(string), 500)]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(List<Node>), (int)HttpStatusCode.OK)]
         public IActionResult GetNodes(Guid Id)
         {
             if (!ModelState.IsValid)
@@ -81,8 +85,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </remarks>
         /// <returns>A List of Tour</returns>
         [HttpGet("GetFeatured")]
-        [ProducesResponseType(typeof(List<Tour>), 200)]
-        [ProducesResponseType(typeof(string), 500)]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetFeatured()
         {
             if (!ModelState.IsValid)
@@ -106,8 +111,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </remarks>
         /// <returns>A List of Tour </returns>
         [HttpGet("GetLastOnesCreated")]
-        [ProducesResponseType(typeof(List<Tour>), 200)]
-        [ProducesResponseType(typeof(string), 500)]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetLastOnesCreated()
         {
             if (!ModelState.IsValid)
@@ -132,8 +138,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </remarks>
         /// <returns>A List of Tour</returns>
         [HttpGet("GetByFullTag/{FullTag}")]
-        [ProducesResponseType(typeof(List<Tour>), 200)]
-        [ProducesResponseType(typeof(string), 500)]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetByFullTag(string FullTag)
         {
             if (!ModelState.IsValid)
@@ -158,8 +165,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </remarks>
         /// <returns>A List of Tour</returns>
         [HttpGet("GetByTag/{Filter}")]
-        [ProducesResponseType(typeof(List<Tour>), 200)]
-        [ProducesResponseType(typeof(string), 500)]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetByTag(string Filter)
         {
             if (!ModelState.IsValid)
@@ -187,8 +195,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// A List of Tour
         /// </returns>
         [HttpGet("GetByTagOrName/{Filter}")]
-        [ProducesResponseType(typeof(List<Tour>), 200)]
-        [ProducesResponseType(typeof(string), 500)]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetByTagOrName(string Filter)
         {
             if (!ModelState.IsValid)
