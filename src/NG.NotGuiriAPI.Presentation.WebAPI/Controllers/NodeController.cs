@@ -22,8 +22,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// <param name="Id">The Id of the desired Node</param>
         /// <remarks>
         /// ## Response code meanings
-        /// - 200 - Tour successfully retrieved
+        /// - 200 - Coupon successfully validated.
         /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
         /// <returns>A Node</returns>
         [HttpGet("{Id}")]

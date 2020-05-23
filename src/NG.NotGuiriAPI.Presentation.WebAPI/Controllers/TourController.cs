@@ -19,13 +19,14 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieves a Tour by its tour Id
+        /// Retrieve a Tour by its tour Id
         /// </summary>
         /// <param name="Id">The Id of the desired Tour</param>
         /// <remarks>
         /// ## Response code meanings
-        /// - 200 - Tour successfully retrieved
+        /// - 200 - Coupon successfully validated.
         /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
         /// <returns>A Tour</returns>
         [HttpGet("{Id}")]
@@ -49,8 +50,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// <param name="Id">The Id of the desired Tour</param>
         /// <remarks>
         /// ## Response code meanings
-        /// - 200 - Tour successfully retrieved
+        /// - 200 - Coupon successfully validated.
         /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
         /// <returns>A List of Nodes</returns>
         [HttpGet("Nodes/{Id}")]
@@ -73,8 +75,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </summary>
         /// <remarks>
         /// ## Response code meanings
-        /// - 200 - All tours successfully retrieved
+        /// - 200 - Coupon successfully validated.
         /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
         /// <returns>A List of Tour</returns>
         [HttpGet("GetFeatured")]
@@ -97,8 +100,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </summary>
         /// <remarks>
         /// ## Response code meanings
-        /// - 200 - All tours successfully retrieved
+        /// - 200 - Coupon successfully validated.
         /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
         /// <returns>A List of Tour </returns>
         [HttpGet("GetLastOnesCreated")]
@@ -122,8 +126,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// <param name="FullTag">The explicit tag we want to filter the tours by</param>
         /// <remarks>
         /// ## Response code meanings
-        /// - 200 - All tours successfully retrieved
+        /// - 200 - Coupon successfully validated.
         /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
         /// <returns>A List of Tour</returns>
         [HttpGet("GetByFullTag/{FullTag}")]
@@ -147,8 +152,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// <param name="Filter">The partial tag we want to filter the tours by</param>
         /// <remarks>
         /// ## Response code meanings
-        /// - 200 - All tours successfully retrieved
+        /// - 200 - Coupon successfully validated.
         /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
         /// <returns>A List of Tour</returns>
         [HttpGet("GetByTag/{Filter}")]
@@ -173,8 +179,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// <param name="Filter">The partial tag or tour name we want to filter the tours by</param>
         /// <remarks>
         /// ## Response code meanings
-        /// - 200 - All tours successfully retrieved
+        /// - 200 - Coupon successfully validated.
         /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
         /// <returns>
         /// A List of Tour

@@ -20,8 +20,10 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </summary>
         /// <remarks>
         /// ## Response code meanings
-        /// - 200 - Coupon successfully generated
+        /// - 200 - Coupon successfully validated.
+        /// - 400 - The model is not properly built.
         /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
         /// <returns>A bool</returns>
         [HttpPost("{Id}")]
