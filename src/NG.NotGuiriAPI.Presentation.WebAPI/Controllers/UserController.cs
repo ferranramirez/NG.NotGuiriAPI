@@ -27,6 +27,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
         /// <returns>A User</returns>
+        //[Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
