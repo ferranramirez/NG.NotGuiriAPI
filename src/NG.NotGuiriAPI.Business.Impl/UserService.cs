@@ -1,7 +1,9 @@
-﻿using NG.DBManager.Infrastructure.Contracts.Models;
+﻿using NG.Common.Utilities;
+using NG.DBManager.Infrastructure.Contracts.Models;
 using NG.DBManager.Infrastructure.Contracts.UnitsOfWork;
 using NG.NotGuiriAPI.Business.Contract;
-using System;
+using System.Linq;
+using System.Security.Claims;
 
 namespace NG.NotGuiriAPI.Business.Impl
 {
@@ -14,9 +16,13 @@ namespace NG.NotGuiriAPI.Business.Impl
             _unitOfWork = unitOfWork;
         }
 
-        public User Get(Guid id)
+        public User Get(string authorizationHeader)
         {
-            return _unitOfWork.Repository<User>().Get(id);
+            var tokenClaims = TokenUtilities.GetClaims(authorizationHeader);
+
+            var emailAddress = tokenClaims.First(c => string.Equals(c.Type, ClaimTypes.Email)).Value;
+
+            return _unitOfWork.User.GetByEmail(emailAddress);
         }
     }
 }

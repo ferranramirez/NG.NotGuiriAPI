@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Moq" Version="4.14.1" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="coverlet.collector" Version="1.2.0" />
+    <PackageReference Include="Faker.Net" Version="1.3.77" />
+    <PackageReference Include="NBuilder" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NG.NotGuiriAPI.Business.Contract\NG.NotGuiriAPI.Business.Contract.csproj" />
+    <ProjectReference Include="..\..\src\NG.NotGuiriAPI.Business.Impl\NG.NotGuiriAPI.Business.Impl.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NG.DBManager.Infrastructure.Contracts">
+      <HintPath>..\..\..\NG.DBManager\src\NG.DBManager.Infrastructure.Impl.EF\bin\Debug\netcoreapp3.1\NG.DBManager.Infrastructure.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="NG.DBManager.Infrastructure.Impl.EF">
+      <HintPath>..\..\..\NG.DBManager\src\NG.DBManager.Infrastructure.Impl.EF\bin\Debug\netcoreapp3.1\NG.DBManager.Infrastructure.Impl.EF.dll</HintPath>
+    </Reference>
+    <Reference Include="NG.DBManager.Test.Utilities">
+      <HintPath>..\..\..\NG.DBManager\test\NG.DBManager.Test.Utilities\bin\Debug\netcoreapp3.1\NG.DBManager.Test.Utilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

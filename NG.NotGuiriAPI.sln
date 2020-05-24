@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NG.NotGuiriAPI.Test.UnitTest", "test\NG.NotGuiriAPI.Test.UnitTest\NG.NotGuiriAPI.Test.UnitTest.csproj", "{AFD43E09-84EE-444F-9A7B-E28499DC78B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{3A48E775-424B-4B4C-8D71-BD7E290BB135}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A48E775-424B-4B4C-8D71-BD7E290BB135}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A48E775-424B-4B4C-8D71-BD7E290BB135}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFD43E09-84EE-444F-9A7B-E28499DC78B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFD43E09-84EE-444F-9A7B-E28499DC78B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFD43E09-84EE-444F-9A7B-E28499DC78B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFD43E09-84EE-444F-9A7B-E28499DC78B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{E6A7BFF2-DB20-4576-93AB-AB5C51103F49} = {9D3848E4-2F34-4E18-A022-D7566CA4FD61}
 		{2A902468-8B44-45AC-B2E2-C3DF5971D4DD} = {9D3848E4-2F34-4E18-A022-D7566CA4FD61}
 		{3A48E775-424B-4B4C-8D71-BD7E290BB135} = {F40B83DF-879C-4269-AE88-4DB572A9E75E}
+		{AFD43E09-84EE-444F-9A7B-E28499DC78B4} = {F40B83DF-879C-4269-AE88-4DB572A9E75E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A563C31-DC8F-431C-8E67-D054F5EF2A3D}
