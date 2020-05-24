@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using NG.Common.Filters;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using NG.Common.Library.Filters;
 using NG.DBManager.Infrastructure.Contracts.Models;
 using NG.NotGuiriAPI.Business.Contract;
 using System.Net;
@@ -27,7 +28,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
         /// <returns>A User</returns>
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]

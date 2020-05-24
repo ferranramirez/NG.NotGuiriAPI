@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NG.Common.Extensions;
-using NG.Common.Filters;
+using NG.Common.Library.Extensions;
+using NG.Common.Library.Filters;
 using NG.NotGuiriAPI.Business.Impl.IoCModule;
 using System.Reflection;
 

@@ -1,4 +1,4 @@
-﻿using NG.Common.Utilities;
+﻿using NG.Common.Library.Utilities;
 using NG.DBManager.Infrastructure.Contracts.Models;
 using NG.DBManager.Infrastructure.Contracts.UnitsOfWork;
 using NG.NotGuiriAPI.Business.Contract;
