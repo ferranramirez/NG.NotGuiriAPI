@@ -3,7 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using NG.Common.Services.AuthorizationProvider;
 using NG.DBManager.Infrastructure.Contracts.Models;
+using NG.DBManager.Infrastructure.Contracts.Models.Enums;
 using NG.NotGuiriAPI.Test.E2E.Fixture;
+using System;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Xunit;
@@ -18,26 +20,27 @@ namespace NG.NotGuiriAPI.Test.E2E
         {
             _httpUtilities = httpUtilities;
 
-            var Configuration = _httpUtilities.ServiceProvider.GetService<IConfiguration>();
-            _authorizationProvider = ioCModule.BuildServiceProvider(Configuration).GetService<IAuthorizationProvider>();
+            var Configuration = _httpUtilities.ServiceProvider.GetRequiredService<IConfiguration>();
+            _authorizationProvider = ioCModule.BuildServiceProvider(Configuration).GetRequiredService<IAuthorizationProvider>();
         }
 
         [Fact]
         public async Task GetRequestToAuthorizedUser_ShouldReturnUserAsJson()
         {
-            // ARRANGE
+            // Arrange
             var client = _httpUtilities.HttpClient;
 
-            AuthorizedUser authUser = new AuthorizedUser("ferran@notguiri.com", "Admin");
+            Guid userId = Guid.Parse("115A81C7-E960-4B88-ACA9-496D80745253");
+            AuthorizedUser authUser = new AuthorizedUser(userId, "basic@test.org", nameof(Role.Basic));
 
             var token = _authorizationProvider.GetToken(authUser);
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
 
-            // ACT
+            // Act
             var httpResponse = await client.GetAsync("/User");
 
-            // ASSERT
+            // Assert
             httpResponse.EnsureSuccessStatusCode();
 
             string response = await httpResponse.Content.ReadAsStringAsync();

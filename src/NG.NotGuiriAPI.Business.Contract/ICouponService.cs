@@ -1,9 +1,11 @@
 ﻿using NG.DBManager.Infrastructure.Contracts.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace NG.NotGuiriAPI.Business.Contract
 {
     public interface ICouponService
     {
-        System.Threading.Tasks.Task<bool> Add(Coupon coupon);
+        Task<Coupon> Add(Guid userId, Guid commerceId, string content);
     }
 }

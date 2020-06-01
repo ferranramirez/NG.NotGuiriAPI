@@ -37,40 +37,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(Tour), (int)HttpStatusCode.OK)]
         public IActionResult Get(Guid Id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var response = _tourService.Get(Id);
-
-            return Ok(response);
-        }
-
-        /// <summary>
-        /// Retrieve the nodes by their tour Id
-        /// </summary>
-        /// <param name="Id">The Id of the desired Tour</param>
-        /// <remarks>
-        /// ## Response code meanings
-        /// - 200 - Coupon successfully validated.
-        /// - 500 - An internal server error. Something bad and unexpected happened.
-        /// - 543 - A handled error. This error was expected, check the message.
-        /// </remarks>
-        /// <returns>A List of Nodes</returns>
-        [HttpGet("Nodes/{Id}")]
-        [ProducesResponseType(typeof(ApiError), 543)]
-        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<Node>), (int)HttpStatusCode.OK)]
-        public IActionResult GetNodes(Guid Id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var response = _tourService.GetNodes(Id);
-
             return Ok(response);
         }
 
@@ -90,14 +57,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetFeatured()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var response = await _tourService.GetFeatured();
-
-            return Ok(response);
+            return Ok(await _tourService.GetFeatured());
         }
 
         /// <summary>
@@ -116,14 +76,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetLastOnesCreated()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var response = await _tourService.GetLastOnesCreated();
-
-            return Ok(response);
+            return Ok(await _tourService.GetLastOnesCreated());
         }
 
         /// <summary>
@@ -143,14 +96,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetByFullTag(string FullTag)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var response = await _tourService.GetByFullTag(FullTag);
-
-            return Ok(response);
+            return Ok(await _tourService.GetByFullTag(FullTag));
         }
 
         /// <summary>
@@ -170,14 +116,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetByTag(string Filter)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var response = await _tourService.GetByTag(Filter);
-
-            return Ok(response);
+            return Ok(await _tourService.GetByTag(Filter));
         }
 
 
@@ -200,14 +139,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetByTagOrName(string Filter)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var response = await _tourService.GetByTagOrName(Filter);
-
-            return Ok(response);
+            return Ok(await _tourService.GetByTagOrName(Filter));
         }
     }
 }

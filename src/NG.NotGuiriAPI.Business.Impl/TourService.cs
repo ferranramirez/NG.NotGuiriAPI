@@ -16,10 +16,9 @@ namespace NG.NotGuiriAPI.Business.Impl
             _unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<Node> GetNodes(Guid id)
+        public Tour Get(Guid id)
         {
-            var tour = _unitOfWork.Tour.Get(id);
-            return tour.Nodes;
+            return _unitOfWork.Tour.Get(id);
         }
 
         public async Task<IEnumerable<Tour>> GetFeatured()
@@ -45,11 +44,6 @@ namespace NG.NotGuiriAPI.Business.Impl
         public async Task<IEnumerable<Tour>> GetByTagOrName(string filter)
         {
             return await _unitOfWork.Tour.GetByTagOrName(filter);
-        }
-
-        public Tour Get(Guid id)
-        {
-            return _unitOfWork.Tour.Get(id);
         }
     }
 }

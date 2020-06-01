@@ -21,6 +21,11 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(ApiExceptionFilter));
+            });
+
             services.AddControllers();
 
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -28,21 +33,13 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
 
             services.AddJwtAuthentication(Configuration.GetSection("Secrets"));
 
-            services.AddMvc(options =>
-            {
-                options.Filters.Add(typeof(ApiExceptionFilter));
-            });
-
-            services.AddBusinessServices();
+            services.AddBusinessServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            if (env.IsDevelopment()) { app.UseDeveloperExceptionPage(); }
 
             app.UseHttpsRedirection();
 
@@ -53,6 +50,8 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseLogScopeMiddleware();
 
             app.UseEndpoints(endpoints =>
             {

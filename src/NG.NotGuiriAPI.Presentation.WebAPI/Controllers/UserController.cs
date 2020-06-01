@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NG.Common.Library.Filters;
 using NG.DBManager.Infrastructure.Contracts.Models;
 using NG.NotGuiriAPI.Business.Contract;
+using System;
 using System.Net;
 
 namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
@@ -21,6 +22,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// <summary>
         /// Retrieve the User information by its mail contained in the token
         /// </summary>
+        /// <param name="UserId">This value is ignored. The userId is constructed from the authorization token</param>
         /// <remarks>
         /// ## Response code meanings
         /// - 200 - Coupon successfully validated.
@@ -29,23 +31,14 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </remarks>
         /// <returns>A User</returns>
         [Authorize]
+        [AuthUserIdFromToken]
         [HttpGet]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
-        public IActionResult Get()
+        public IActionResult Get(Guid AuthUserId = default /* Got from the [AuthUserIdFromToken] filter */ )
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var token = Request.Headers["Authorization"].ToString();
-
-            var response = _userService.Get(token);
-
-            return Ok(response);
+            return Ok(_userService.Get(AuthUserId));
         }
-
     }
 }

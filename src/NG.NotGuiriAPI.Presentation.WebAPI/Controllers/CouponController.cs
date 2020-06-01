@@ -1,11 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NG.Common.Library.Filters;
 using NG.DBManager.Infrastructure.Contracts.Models;
 using NG.NotGuiriAPI.Business.Contract;
+using System;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
 {
+    [Authorize(Roles = "Basic, Standard, Premium, Admin")]
     [ApiController]
     [Route("[controller]")]
     public class CouponController : ControllerBase
@@ -28,21 +32,15 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
         /// <returns>A bool</returns>
-        [HttpPost("{Id}")]
+        [AuthUserIdFromToken]
+        [HttpPost("{CommerceId}")]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
-        public IActionResult Add([FromBody] Coupon NewCoupon)
+        public async Task<IActionResult> AddAsync([FromQuery] string Content, Guid CommerceId,
+            Guid AuthUserId = default /* Got from the [AuthUserIdFromToken] filter */)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var response = _couponService.Add(NewCoupon);
-
-            return Ok(response);
+            return Ok(await _couponService.Add(AuthUserId, CommerceId, Content));
         }
-
     }
 }

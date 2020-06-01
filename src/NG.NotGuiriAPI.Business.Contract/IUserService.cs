@@ -1,9 +1,10 @@
 ﻿using NG.DBManager.Infrastructure.Contracts.Models;
+using System;
 
 namespace NG.NotGuiriAPI.Business.Contract
 {
     public interface IUserService
     {
-        User Get(string authorizationHeader);
+        User Get(Guid userId);
     }
 }

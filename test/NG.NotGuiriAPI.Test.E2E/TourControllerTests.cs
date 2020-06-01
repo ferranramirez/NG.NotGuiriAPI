@@ -18,13 +18,13 @@ namespace NG.NotGuiriAPI.Test.E2E
         [Fact]
         public async Task DoingAGetRequestToFeaturedTours_ShouldReturnToursAsJson()
         {
-            // ARRANGE
+            // Arrange
             var client = _httpUtilities.HttpClient;
 
-            // ACT
+            // Act
             var httpResponse = await client.GetAsync("/Tour/GetFeatured");
 
-            // ASSERT
+            // Assert
             httpResponse.EnsureSuccessStatusCode();
 
             string response = await httpResponse.Content.ReadAsStringAsync();

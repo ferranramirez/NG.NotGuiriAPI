@@ -11,55 +11,67 @@ namespace NG.NotGuiriAPI.Test.UnitTest
 {
     public class UserServiceTests
     {
-        private Mock<IAPIUnitOfWork> _uowMock;
+        private Mock<IAPIUnitOfWork> _unitOfWorkMock;
         private IUserService _userService;
-        private User expected;
+        private Guid rightUserId;
+        private User expectedUser;
+        private Guid wrongUserId;
+        private User wrongUser;
 
         public UserServiceTests()
         {
-            _uowMock = new Mock<IAPIUnitOfWork>();
-            _userService = new UserService(_uowMock.Object);
+            _unitOfWorkMock = new Mock<IAPIUnitOfWork>();
+            _userService = new UserService(_unitOfWorkMock.Object);
 
-            expected = new User
+            rightUserId = Guid.NewGuid();
+            expectedUser = new User
             {
-                Id = Guid.NewGuid(),
+                Id = rightUserId,
                 Name = "Steve",
                 Surname = "Jobs",
                 Email = "steve@jobs.com",
+                Birthdate = DateTime.Parse("01/01/1970"),
+                Role = Role.Premium
+            };
+
+            wrongUserId = Guid.NewGuid();
+            wrongUser = new User
+            {
+                Id = wrongUserId,
+                Name = "Bill",
+                Surname = "Gates",
+                Email = "bill@gates.com",
+                Birthdate = DateTime.Parse("01/01/1970"),
                 Role = Role.Premium
             };
         }
 
         [Fact]
-        public void GetUserTest()
+        public void GetUser_GivesRightUser_ReturnsExpectedUser()
         {
             //Arrange
-            // This token contains "steve@jobs.com" as Email
-            string authorizationHeader = "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJzdGV2ZUBqb2JzLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJQcmVtaXVtIn0.Gc-M_WCR0J-ZNeAe5V_oEhXkySTPSpvc825UWTI_bDQ";
-
-            _uowMock.Setup(uow => uow.User.GetByEmail("steve@jobs.com")).Returns(expected);
+            _unitOfWorkMock.Setup(uow => uow.User.GetByEmail("steve@jobs.com")).Returns(expectedUser);
+            _unitOfWorkMock.Setup(uow => uow.User.Get(rightUserId)).Returns(expectedUser);
 
             //Act
-            var actual = _userService.Get(authorizationHeader);
+            var actual = _userService.Get(rightUserId);
 
             //Assert
-            Assert.Equal(expected, actual);
+            Assert.Equal("steve@jobs.com", actual.Email);
         }
 
         [Fact]
-        public void GetUser_GivesWrongAuthHeader_ReturnsNull()
+        public void GetUser_GivesWrongUserId_ReturnsNull()
         {
             //Arrange
-            // The email of this token is not "steve@jobs.com"
-            string authorizationHeader = "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJzdGV2ZUB3b25kZXIuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlByZW1pdW0ifQ.3UAD0c4e17TxyfdUnaERE1RmXbf25TAL0nIHlsWlNaA";
-
-            _uowMock.Setup(uow => uow.User.GetByEmail("steve@jobs.com")).Returns(expected);
+            _unitOfWorkMock.Setup(uow => uow.User.GetByEmail("steve@jobs.com")).Returns(expectedUser);
+            _unitOfWorkMock.Setup(uow => uow.User.Get(wrongUserId)).Returns(wrongUser);
 
             //Act
-            var actual = _userService.Get(authorizationHeader);
+            var actual = _userService.Get(wrongUserId);
 
             //Assert
-            Assert.NotEqual(expected, actual);
+            Assert.NotEqual("steve@jobs.com", actual.Email);
         }
     }
 }
