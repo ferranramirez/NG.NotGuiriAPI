@@ -22,7 +22,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// <summary>
         /// Retrieve the User information by its mail contained in the token
         /// </summary>
-        /// <param name="UserId">This value is ignored. The userId is constructed from the authorization token</param>
+        /// <param name="AuthUserId">This value is ignored. The userId is constructed from the authorization token</param>
         /// <remarks>
         /// ## Response code meanings
         /// - 200 - Coupon successfully validated.
