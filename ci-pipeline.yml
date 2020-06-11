@@ -12,9 +12,14 @@ steps:
 #     Contents: '**/docker-deploy.yml'
 #     TargetFolder: '$(Build.StagingDirectory)'
 
+- task: CmdLine@2
+  displayName: 'Login into the Canister registry'
+  inputs:
+    script: 'ls'
+    
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '**/docker-deploy.yml'
+    PathtoPublish: '$(Build.SourcesDirectory)/**/docker-deploy.yml'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
