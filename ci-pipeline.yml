@@ -33,10 +33,10 @@ steps:
     action: 'Build services'
     includeLatestTag: false
 
-- task: CmdLine@2
-  displayName: 'Tag image with Canister repository name'
-  inputs:
-    script: 'docker tag ngnotguiriapi_notguiriapi ferranramirez/ngnotguiriapi'
+# - task: CmdLine@2
+#   displayName: 'Tag image with Canister repository name'
+#   inputs:
+#     script: 'docker tag ngnotguiriapi_notguiriapi ferranramirez/ngnotguiriapi'
 
 - task: DockerCompose@0
   displayName: 'Push image to Canister registry'
