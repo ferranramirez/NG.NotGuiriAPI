@@ -32,6 +32,7 @@ steps:
     includeLatestTag: true
 
 - task: CmdLine@2
+  displayName: 'Tag image with Canister repository name'
   inputs:
     script: 'docker tag ngnotguiriapi_notguiriapi:latest cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
 
@@ -39,7 +40,7 @@ steps:
   displayName: 'Push image to Canister registry'
   inputs:
     containerRegistry: 'cloud.canister.io:5000/ferranramirez/'
-    repository: 'ngnotguiriapi:latest'
+    repository: 'ngnotguiriapi'
     command: 'push'
     tags: 'latest'
     addPipelineData: false
