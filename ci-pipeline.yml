@@ -60,8 +60,9 @@ steps:
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'ferranramirez/ngnotguiriapi'
+    dockerRegistryEndpoint: 'canister_registry'
     dockerComposeFile: '**/docker-compose.yml'
+    projectName: 'cloud.canister.io:5000/ferranramirez/ngnotguiriapi'
     action: 'Push services'
     includeLatestTag: true
 
