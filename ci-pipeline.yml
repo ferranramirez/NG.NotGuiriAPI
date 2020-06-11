@@ -29,12 +29,12 @@ steps:
       PAT=$(PAT)
       ASPNETCORE_ENVIRONMENT=$(ASPNETCORE_ENVIRONMENT)
     action: 'Build services'
-    includeLatestTag: true
+    includeLatestTag: false
 
 - task: CmdLine@2
   displayName: 'Tag image with Canister repository name'
   inputs:
-    script: 'docker tag ngnotguiriapi_notguiriapi:latest cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
+    script: 'docker tag ngnotguiriapi_notguiriapi ferranramirez/ngnotguiriapi'
 
 - task: DockerCompose@0
   displayName: 'Push image to Canister registry'
