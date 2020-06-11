@@ -38,7 +38,7 @@ steps:
 - task: CmdLine@2
   displayName: 'Tag image with Canister repository name'
   inputs:
-    script: 'docker tag cloud.canister.io:5000/ngnotguiriapi_notguiriapi:latest ferranramirez/ngnotguiriapi:latest'
+    script: 'docker tag cloud.canister.io:5000/ngnotguiriapi_notguiriapi:latest cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
 
 - task: CmdLine@2
   displayName: 'Tag image with Canister repository name'
@@ -60,7 +60,7 @@ steps:
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'canister_registry'
+    dockerRegistryEndpoint: 'cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Push services'
     includeLatestTag: true
@@ -68,7 +68,7 @@ steps:
 - task: Docker@2
   displayName: 'Push image to Canister registry 2'
   inputs:
-    containerRegistry: 'cloud.canister.io:5000/ferranramirez/'
+    containerRegistry: 'docker-hub/ferranramirez'
     repository: 'ferranramirez/ngnotguiriapi'
     command: 'push'
     tags: 'latest'
