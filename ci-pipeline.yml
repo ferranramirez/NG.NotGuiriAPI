@@ -12,14 +12,12 @@ steps:
     Contents: '**'
     TargetFolder: '$(Build.StagingDirectory)'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-
-
+# - task: PublishBuildArtifacts@1
+#   displayName: 'Publish Artifact: drop'
+#   inputs:
+#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#     ArtifactName: 'drop'
+#     publishLocation: 'Container'
 
 - task: DockerCompose@0
   displayName: 'Docker Build'
@@ -36,7 +34,16 @@ steps:
 - task: CmdLine@2
   displayName: 'Tag image with Canister repository name'
   inputs:
-    script: 'docker tag ngnotguiriapi_notguiriapi ferranramirez/ngnotguiriapi'
+    script: 'docker tag cloud.canister.io:5000/ngnotguiriapi_notguiriapi:latest ferranramirez/ngnotguiriapi'
+- task: CmdLine@2
+  displayName: 'Tag image with Canister repository name'
+  inputs:
+    script: 'docker tag cloud.canister.io:5000/ngnotguiriapi_notguiriapi:latest ferranramirez/ngnotguiriapi:latest'
+
+- task: CmdLine@2
+  displayName: 'Tag image with Canister repository name'
+  inputs:
+    script: 'docker images'
 
 # - task: DockerCompose@0
 #   displayName: 'Push image to Canister registry'
