@@ -14,7 +14,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/**/docker-deploy.yml'
+    PathtoPublish: '**/docker-deploy.yml'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
