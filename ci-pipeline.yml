@@ -5,6 +5,12 @@ pool:
   vmImage: 'ubuntu-18.04'
 
 steps: 
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'docker login --username=ferranramirez --password=$(Build.StagingDirectory) cloud.canister.io:5000'
+    failOnStderr: true
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(Build.StagingDirectory)'
   inputs:
@@ -39,7 +45,7 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'docker login --username=ferranramirez --password=$REGISTER_PWD cloud.canister.io:5000'
+    script: 'docker login --username=ferranramirez --password=$(Build.StagingDirectory) cloud.canister.io:5000'
     failOnStderr: true
 
 - task: CmdLine@2
