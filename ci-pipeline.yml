@@ -19,11 +19,13 @@ steps:
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
+
+
 - task: DockerCompose@0
   displayName: 'Docker Build'
   inputs:
     containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'docker-hub/ferranramirez'
+    dockerRegistryEndpoint: 'canister_registry'
     dockerComposeFile: '**/docker-compose.yml'
     dockerComposeFileArgs: |
       PAT=$(PAT)
