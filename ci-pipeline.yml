@@ -4,19 +4,19 @@ trigger:
 pool:
   vmImage: 'ubuntu-18.04'
 
-steps: 
+steps:     
+# - task: CopyFiles@2
+#   displayName: 'Copy Files to: $(Build.StagingDirectory)'
+#   inputs:
+#     SourceFolder: '$(Build.SourcesDirectory)'
+#     Contents: '**/docker-deploy.yml'
+#     TargetFolder: '$(Build.StagingDirectory)'
 
-- task: PowerShell@2
+- task: PublishBuildArtifacts@1
   inputs:
-    targetType: 'inline'
-    script: 'docker login --username=ferranramirez --password=$(REGISTER_PWD) cloud.canister.io:5000'
-    
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(Build.StagingDirectory)'
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '**'
-    TargetFolder: '$(Build.StagingDirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/docker-deploy.yml'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
 # - task: PublishBuildArtifacts@1
 #   displayName: 'Publish Artifact: drop'
@@ -42,17 +42,10 @@ steps:
   inputs:
     script: 'docker tag cloud.canister.io:5000/ngnotguiriapi_notguiriapi:latest cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
 
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: 'docker login --username=ferranramirez --password=$(Build.StagingDirectory) cloud.canister.io:5000'
-    failOnStderr: true
-
 - task: CmdLine@2
-  displayName: 'Login'
+  displayName: 'Login into the Canister registry'
   inputs:
-    script: 'docker login --username=ferranramirez --password=$REGISTER_PWD cloud.canister.io:5000'
-
+    script: 'docker login --username=ferranramirez --password=$(REGISTER_PWD) cloud.canister.io:5000'
 
 
 # - task: CmdLine@2
