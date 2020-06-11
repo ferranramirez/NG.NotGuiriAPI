@@ -31,17 +31,9 @@ steps:
     action: 'Build services'
     includeLatestTag: true
 
-- task: DockerCompose@0
+- task: CmdLine@2
   inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'docker-hub/ferranramirez'
-    dockerComposeFile: '**/docker-compose.yml'    
-    dockerComposeFileArgs: |
-      PAT=$(PAT)
-      ASPNETCORE_ENVIRONMENT=$(ASPNETCORE_ENVIRONMENT)
-    projectName: 'cloud.canister.io:5000/ferranramirez/ngnotguiriapi'
-    action: 'Run a Docker Compose command'
-    nopIfNoDockerComposeFile: true
+    script: 'docker tag ngnotguiriapi_notguiriapi:latest cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
 
 - task: Docker@2
   displayName: 'Push image to Canister registry'
