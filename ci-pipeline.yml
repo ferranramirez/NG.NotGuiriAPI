@@ -36,10 +36,18 @@ steps:
   inputs:
     script: 'docker tag cloud.canister.io:5000/ngnotguiriapi_notguiriapi:latest cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
 
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'docker login --username=ferranramirez --password=$REGISTER_PWD cloud.canister.io:5000'
+    failOnStderr: true
+
 - task: CmdLine@2
   displayName: 'Login'
   inputs:
     script: 'docker login --username=ferranramirez --password=$REGISTER_PWD cloud.canister.io:5000'
+
+
 
 # - task: CmdLine@2
 #   displayName: 'Push image'
