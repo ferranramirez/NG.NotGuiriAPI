@@ -9,7 +9,8 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'docker login --username=ferranramirez --password-stdin=$(REGISTER_PWD) cloud.canister.io:5000'
+    script: 'docker login --username=ferranramirez --password=$(REGISTER_PWD) cloud.canister.io:5000'
+    
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(Build.StagingDirectory)'
   inputs:
