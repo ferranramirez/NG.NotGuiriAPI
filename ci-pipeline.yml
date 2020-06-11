@@ -42,11 +42,13 @@ steps:
     containerregistrytype: 'Container Registry'
     dockerRegistryEndpoint: 'canister_registry'
     dockerComposeFile: '**/docker-compose.yml'
-    dockerComposeFileArgs: 'PAT=$(PAT) ASPNETCORE_ENVIRONMENT=$(ASPNETCORE_ENVIRONMENT)'
     projectName: 'ferranramirez/ngnotguiriapi'
+    qualifyImageNames: false
     action: 'Push services'
     includeLatestTag: true
-    
+    nopIfNoDockerComposeFile: true
+
+
 - task: Docker@2
   displayName: 'Push image to Canister registry 2'
   inputs:
