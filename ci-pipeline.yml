@@ -5,9 +5,23 @@ pool:
   vmImage: 'ubuntu-18.04'
 
 steps:
+- task: replacetokens@3
+  inputs:
+    rootDirectory: '$(System.DefaultWorkingDirectory)'
+    targetFiles: '**/appsettings.$(ASPNETCORE_ENVIRONMENT).json'
+    encoding: 'auto'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: false
+    tokenPrefix: '#{'
+    tokenSuffix: '}#'
+    useLegacyPattern: false
+    enableTelemetry: false
+
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: 'docker-deploy.yml'
+    # PathtoPublish: 'docker-deploy.yml'
+    PathtoPublish: '*'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 - task: DockerCompose@0
