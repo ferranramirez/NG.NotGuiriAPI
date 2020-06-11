@@ -9,8 +9,11 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      Write-Host "ls"
       ls
+      Write-Host "cd"
       cd $(System.DefaultWorkingDirectory)
+      Write-Host "ls"
       ls
 - task: replacetokens@3
   inputs:
