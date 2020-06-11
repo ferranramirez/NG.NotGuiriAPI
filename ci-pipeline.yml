@@ -34,52 +34,22 @@ steps:
 - task: CmdLine@2
   displayName: 'Tag image with Canister repository name'
   inputs:
-    script: 'docker tag cloud.canister.io:5000/ngnotguiriapi_notguiriapi:latest ferranramirez/ngnotguiriapi'
-- task: CmdLine@2
-  displayName: 'Tag image with Canister repository name'
-  inputs:
     script: 'docker tag cloud.canister.io:5000/ngnotguiriapi_notguiriapi:latest cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
-
-- task: CmdLine@2
-  displayName: 'Tag image with Canister repository name'
-  inputs:
-    script: 'docker images'
 
 - task: CmdLine@2
   displayName: 'Login'
   inputs:
-    script: 'docker login --username=ferranramirez --password=Ssdylm?533 cloud.canister.io:5000'
+    script: 'docker login --username=ferranramirez --password-stdin=$REGISTER_PWD cloud.canister.io:5000'
 
-- task: CmdLine@2
-  displayName: 'Push image'
-  inputs:
-    script: 'docker push cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
-    
-# - task: DockerCompose@0
-#   displayName: 'Push image to Canister registry'
+# - task: CmdLine@2
+#   displayName: 'Push image'
 #   inputs:
-#     containerregistrytype: 'Container Registry'
-#     dockerRegistryEndpoint: 'canister_registry'
-#     dockerComposeFile: '**/docker-compose.yml'
-#     projectName: 'ferranramirez/ngnotguiriapi'
-#     qualifyImageNames: false
-#     action: 'Push services'
-#     includeLatestTag: true
-#     nopIfNoDockerComposeFile: true
-
-# - task: DockerCompose@0
-#   inputs:
-#     containerregistrytype: 'Container Registry'
-#     dockerRegistryEndpoint: 'canister_registry'
-#     dockerComposeFile: '**/docker-compose.yml'
-#     projectName: 'ngnotguiriapi'
-#     action: 'Push services'
-#     includeLatestTag: true
+#     script: 'docker push cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
 
 - task: Docker@2
-  displayName: 'Push image to Canister registry 2'
+  displayName: 'Push image to Canister registry'
   inputs:
-    containerRegistry: 'docker-hub/ferranramirez'
+    containerRegistry: 'canister_registry'
     repository: 'ferranramirez/ngnotguiriapi'
     command: 'push'
     tags: 'latest'
