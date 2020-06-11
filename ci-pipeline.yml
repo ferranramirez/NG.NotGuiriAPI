@@ -18,7 +18,7 @@ steps:
 - task: replacetokens@3
   inputs:
     rootDirectory: '$(System.DefaultWorkingDirectory)'
-    targetFiles: '**/appsettings.$(ASPNETCORE_ENVIRONMENT).json'
+    targetFiles: '**/appsettings.*.json'
     encoding: 'auto'
     writeBOM: true
     actionOnMissing: 'warn'
@@ -31,7 +31,7 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     # PathtoPublish: 'docker-deploy.yml'
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/*'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 - task: DockerCompose@0
