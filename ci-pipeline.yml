@@ -46,6 +46,11 @@ steps:
     script: 'docker images'
 
 - task: CmdLine@2
+  displayName: 'Login'
+  inputs:
+    script: 'docker login --username=ferranramirez --password=Ssdylm?533 cloud.canister.io:5000'
+
+- task: CmdLine@2
   displayName: 'Push image'
   inputs:
     script: 'docker push cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
