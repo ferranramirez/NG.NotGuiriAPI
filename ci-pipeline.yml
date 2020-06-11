@@ -39,7 +39,7 @@ steps:
 - task: CmdLine@2
   displayName: 'Login'
   inputs:
-    script: 'docker login --username=ferranramirez --password-stdin=$REGISTER_PWD cloud.canister.io:5000'
+    script: 'docker login --username=ferranramirez --password=$REGISTER_PWD cloud.canister.io:5000'
 
 # - task: CmdLine@2
 #   displayName: 'Push image'
