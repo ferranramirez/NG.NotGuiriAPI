@@ -40,7 +40,7 @@ steps:
   displayName: 'Push image to Canister registry'
   inputs:
     containerRegistry: 'cloud.canister.io:5000/ferranramirez/'
-    repository: 'ngnotguiriapi'
+    repository: 'ferranramirez/ngnotguiriapi'
     command: 'push'
     tags: 'latest'
     addPipelineData: false
