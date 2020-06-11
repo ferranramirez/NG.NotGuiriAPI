@@ -45,6 +45,11 @@ steps:
   inputs:
     script: 'docker images'
 
+- task: CmdLine@2
+  displayName: 'Push image'
+  inputs:
+    script: 'docker push cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
+
 # - task: DockerCompose@0
 #   displayName: 'Push image to Canister registry'
 #   inputs:
@@ -56,15 +61,6 @@ steps:
 #     action: 'Push services'
 #     includeLatestTag: true
 #     nopIfNoDockerComposeFile: true
-
-- task: DockerCompose@0
-  inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'canister_registry'
-    dockerComposeFile: '**/docker-compose.yml'
-    projectName: 'cloud.canister.io:5000/ferranramirez/ngnotguiriapi'
-    action: 'Push services'
-    includeLatestTag: true
 
 - task: Docker@2
   displayName: 'Push image to Canister registry 2'
