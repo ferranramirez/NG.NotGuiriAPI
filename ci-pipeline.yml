@@ -37,17 +37,18 @@ steps:
     script: 'docker tag ngnotguiriapi_notguiriapi:latest cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
 
 - task: DockerCompose@0
+  displayName: 'Push image to Canister registry'
   inputs:
     containerregistrytype: 'Container Registry'
     dockerRegistryEndpoint: 'canister_registry'
     dockerComposeFile: '**/docker-compose.yml'
     dockerComposeFileArgs: 'PAT=$(PAT) ASPNETCORE_ENVIRONMENT=$(ASPNETCORE_ENVIRONMENT)'
-    projectName: 'ferranramirez/$(Build.Repository.Name)'
+    projectName: 'ferranramirez/ngnotguiriapi'
     action: 'Push services'
     includeLatestTag: true
     
 - task: Docker@2
-  displayName: 'Push image to Canister registry'
+  displayName: 'Push image to Canister registry 2'
   inputs:
     containerRegistry: 'cloud.canister.io:5000/ferranramirez/'
     repository: 'ferranramirez/ngnotguiriapi'
