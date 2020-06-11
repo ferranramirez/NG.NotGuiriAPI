@@ -38,8 +38,10 @@ steps:
 - task: Docker@2
   displayName: 'Push image to Canister registry'
   inputs:
+- task: Docker@2
+  inputs:
     containerRegistry: 'cloud.canister.io:5000/ferranramirez/'
-    repository: 'ngnotguiriapi'
+    repository: 'ngnotguiriapi:latest'
     command: 'push'
     tags: 'latest'
     addPipelineData: false
