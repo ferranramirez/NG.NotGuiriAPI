@@ -5,16 +5,6 @@ pool:
   vmImage: 'ubuntu-18.04'
 
 steps:
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      Write-Host "ls"
-      ls
-      Write-Host "cd"
-      cd $(System.DefaultWorkingDirectory)
-      Write-Host "ls"
-      ls
 - task: replacetokens@3
   displayName: 'Replace tokens'
   inputs:
@@ -28,7 +18,6 @@ steps:
     tokenSuffix: '}#'
     useLegacyPattern: false
     enableTelemetry: false
-
 - task: PublishBuildArtifacts@1
   displayName: 'Publish docker-deploy.yml'
   inputs:
@@ -39,7 +28,7 @@ steps:
   displayName: 'Docker Build'
   inputs:
     containerRegistry: 'GitLabRegistry/ferranramirez'
-    repository: 'notguiri/notguiriapi'
+    repository: 'notguiri/$(projectName)'
     command: 'build'
     Dockerfile: '**/Dockerfile'
     tags: '$(Build.SourceBranchName)'
@@ -49,11 +38,7 @@ steps:
   displayName: 'Docker Push'
   inputs:
     containerRegistry: 'GitLabRegistry/ferranramirez'
-    repository: 'notguiri/notguiriapi'
+    repository: 'notguiri/$(projectName)'
     command: 'push'
     tags: '$(Build.SourceBranchName)'
     addPipelineData: false
-- task: CmdLine@2
-  displayName: 'Push image'
-  inputs:
-    script: 'docker push cloud.canister.io:5000/ferranramirez/ngnotguiriapi:$(Build.SourceBranchName)'
