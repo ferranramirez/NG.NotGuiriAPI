@@ -60,7 +60,7 @@ steps:
     containerregistrytype: 'Container Registry'
     dockerRegistryEndpoint: 'GitLabRegistry/ferranramirez'
     dockerComposeFile: '**/docker-compose.yml'
-    dockerComposeFileArgs: '$(PAT)'
+    dockerComposeFileArgs: 'PAT=$(PAT)'
     projectName: 'notguiri/$(Build.Repository.Name)'
     action: 'Build services'
     includeSourceTags: true
