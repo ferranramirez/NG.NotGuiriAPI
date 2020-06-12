@@ -35,6 +35,17 @@ steps:
     PathtoPublish: 'docker-deploy.yml'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+
+- task: Docker@2
+  displayName: 'Docker Build & Push'
+  inputs:
+    containerRegistry: 'GitLabRegistry/ferranramirez'
+    repository: 'registry.gitlab.com/notguiri/notguiriapi'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: '$(Build.SourceBranchName)'
+    addPipelineData: false
+
 - task: DockerCompose@0
   displayName: 'Docker Build'
   inputs:
