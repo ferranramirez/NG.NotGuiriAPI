@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   notguiriapi:
-    image: cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest
+    image: registry.gitlab.com/notguiri/notguiriapi:master
     deploy:
       replicas: 2
       restart_policy:
