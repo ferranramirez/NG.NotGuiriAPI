@@ -35,66 +35,24 @@ steps:
     PathtoPublish: 'docker-deploy.yml'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-
 - task: Docker@2
   displayName: 'Docker Build'
   inputs:
     containerRegistry: 'GitLabRegistry/ferranramirez'
-    repository: 'notguiri/$(Build.Repository.Name)'
+    repository: 'notguiri/notguiriapi'
     command: 'build'
     Dockerfile: '**/Dockerfile'
     tags: '$(Build.SourceBranchName)'
     arguments: '--build-arg PAT=$(PAT)'
     addPipelineData: false
-- task: PowerShell@2
+- task: Docker@2
+  displayName: 'Docker Push'
   inputs:
-    targetType: 'inline'
-    script: |
-      Write-Host "$ docker images"
-      docker images
-      Write-Host "$ docker ps"
-      docker ps
-- task: DockerCompose@0
-  displayName: 'Docker Compose Build'
-  inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'GitLabRegistry/ferranramirez'
-    dockerComposeFile: '**/docker-compose.yml'
-    dockerComposeFileArgs: 'PAT=$(PAT)'
-    projectName: 'notguiri/$(Build.Repository.Name)'
-    action: 'Build services'
-    includeSourceTags: true
-
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      Write-Host "$ docker images"
-      docker images
-      Write-Host "$ docker ps"
-      docker ps
-
-
-
-- task: DockerCompose@0
-  displayName: 'Docker Build'
-  inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'canister_registry'
-    dockerComposeFile: '**/docker-compose.yml'
-    dockerComposeFileArgs: |
-      PAT=$(PAT)
-      ASPNETCORE_ENVIRONMENT=$(ASPNETCORE_ENVIRONMENT)
-    action: 'Build services'
-    includeLatestTag: false
-- task: CmdLine@2
-  displayName: 'Tag image with Canister repository name'
-  inputs:
-    script: 'docker tag cloud.canister.io:5000/ngnotguiriapi_notguiriapi:latest cloud.canister.io:5000/ferranramirez/ngnotguiriapi:$(Build.SourceBranchName)'
-- task: CmdLine@2
-  displayName: 'Login into the Canister registry'
-  inputs:
-    script: 'docker login --username=ferranramirez --password=$(REGISTER_PWD) cloud.canister.io:5000'
+    containerRegistry: 'GitLabRegistry/ferranramirez'
+    repository: 'notguiri/notguiriapi'
+    command: 'push'
+    tags: '$(Build.SourceBranchName)'
+    addPipelineData: false
 - task: CmdLine@2
   displayName: 'Push image'
   inputs:
