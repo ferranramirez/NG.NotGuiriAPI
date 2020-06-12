@@ -16,6 +16,7 @@ steps:
       Write-Host "ls"
       ls
 - task: replacetokens@3
+  displayName: 'Replace tokens'
   inputs:
     rootDirectory: '$(System.DefaultWorkingDirectory)'
     targetFiles: '**/appsettings.*.json'
@@ -29,9 +30,9 @@ steps:
     enableTelemetry: false
 
 - task: PublishBuildArtifacts@1
+  displayName: 'Publish docker-deploy.yml'
   inputs:
-    # PathtoPublish: 'docker-deploy.yml'
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/**'
+    PathtoPublish: 'docker-deploy.yml'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 - task: DockerCompose@0
@@ -48,7 +49,7 @@ steps:
 - task: CmdLine@2
   displayName: 'Tag image with Canister repository name'
   inputs:
-    script: 'docker tag cloud.canister.io:5000/ngnotguiriapi_notguiriapi:latest cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
+    script: 'docker tag cloud.canister.io:5000/ngnotguiriapi_notguiriapi:latest cloud.canister.io:5000/ferranramirez/ngnotguiriapi:$(Build.SourceBranchName)'
 - task: CmdLine@2
   displayName: 'Login into the Canister registry'
   inputs:
@@ -56,4 +57,4 @@ steps:
 - task: CmdLine@2
   displayName: 'Push image'
   inputs:
-    script: 'docker push cloud.canister.io:5000/ferranramirez/ngnotguiriapi:latest'
+    script: 'docker push cloud.canister.io:5000/ferranramirez/ngnotguiriapi:$(Build.SourceBranchName)'
