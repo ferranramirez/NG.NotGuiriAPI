@@ -36,16 +36,16 @@ steps:
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
-- task: Docker@2
-  displayName: 'Docker Build'
-  inputs:
-    containerRegistry: 'GitLabRegistry/ferranramirez'
-    repository: 'notguiri/$(Build.Repository.Name)'
-    command: 'build'
-    Dockerfile: '**/Dockerfile'
-    tags: '$(Build.SourceBranchName)'
-    arguments: '--build-arg $(PAT)'
-    addPipelineData: false
+# - task: Docker@2
+#   displayName: 'Docker Build'
+#   inputs:
+#     containerRegistry: 'GitLabRegistry/ferranramirez'
+#     repository: 'notguiri/$(Build.Repository.Name)'
+#     command: 'build'
+#     Dockerfile: '**/Dockerfile'
+#     tags: '$(Build.SourceBranchName)'
+#     arguments: '--build-arg $(PAT)'
+#     addPipelineData: false
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
