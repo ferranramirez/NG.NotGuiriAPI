@@ -36,6 +36,25 @@ steps:
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryEndpoint: 'GitLabRegistry/ferranramirez'
+    dockerComposeFile: '**/docker-compose.yml'
+    projectName: 'notguiri/$(Build.Repository.Name)'
+    action: 'Build services'
+    additionalImageTags: '$(Build.SourceBranchName)'
+    nopIfNoDockerComposeFile: true
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      Write-Host "$ docker images"
+      docker images
+      Write-Host "$ docker ps"
+      docker ps
+
+
 - task: Docker@2
   displayName: 'Docker Build & Push'
   inputs:
@@ -45,6 +64,8 @@ steps:
     Dockerfile: '**/Dockerfile'
     tags: '$(Build.SourceBranchName)'
     addPipelineData: false
+
+
 
 - task: DockerCompose@0
   displayName: 'Docker Build'
