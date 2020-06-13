@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   notguiriapi:
-    image: registry.gitlab.com/notguiri/notguiriapi:latest
+    image: registry.gitlab.com/notguiri/notguiriapi:#{IMG_TAG}#
     deploy:
       # replicas: 2
       restart_policy:
