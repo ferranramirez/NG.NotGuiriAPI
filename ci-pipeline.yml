@@ -42,7 +42,6 @@ steps:
     tags: '$(Build.SourceBranchName)'
     arguments: '--build-arg PAT=$(PAT)'
     addPipelineData: false
-
 - task: Bash@3
   displayName: 'Copy TestResults out of Docker'
   inputs:
@@ -51,8 +50,8 @@ steps:
       docker create -ti --name testcontainer registry.gitlab.com/notguiri/$(projectName):$(Build.SourceBranchName)
       docker cp testcontainer:/publish/test $(Build.ArtifactStagingDirectory)/TestResults
       docker rm -fv testcontainer
-
 - task: PublishTestResults@2
+  displayName: 'Publish TestResults'
   inputs:
     testResultsFormat: 'VSTest'
     testResultsFiles: 'result.trx'

@@ -26,7 +26,12 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
                 options.Filters.Add(typeof(ApiExceptionFilter));
             });
 
-            services.AddHealthCheckMiddleware(Configuration);
+            var baseUrl = Configuration.GetSection("Urls").GetValue<string>("Base") ?? "localhost:80";
+            var hcName = string.Concat(Configuration.GetSection("Documentation").GetValue<string>("Title"), "HealthCheck");
+            services.AddHealthChecks()
+                    .AddSqlServer(Configuration.GetConnectionString("NotGuiriDb"));
+            services.AddHealthChecksUI(setup => setup.AddHealthCheckEndpoint(hcName, string.Concat(baseUrl, "/health")))
+                    .AddInMemoryStorage();
 
             services.AddControllers();
 
