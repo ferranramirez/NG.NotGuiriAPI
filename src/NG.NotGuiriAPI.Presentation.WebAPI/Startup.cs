@@ -26,7 +26,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
                 options.Filters.Add(typeof(ApiExceptionFilter));
             });
 
-            var baseUrl = Configuration.GetSection("Urls").GetValue<string>("Base") ?? "localhost:80";
+            var baseUrl = Configuration.GetSection("Urls").GetValue<string>("Base") ?? "http://92.222.88.143:8083";
             var hcName = string.Concat(Configuration.GetSection("Documentation").GetValue<string>("Title"), "HealthCheck");
             services.AddHealthChecks()
                     .AddSqlServer(Configuration.GetConnectionString("NotGuiriDb"));
