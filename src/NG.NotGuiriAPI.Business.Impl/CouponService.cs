@@ -22,7 +22,7 @@ namespace NG.NotGuiriAPI.Business.Impl
             _errors = errors.Value;
         }
 
-        public async Task<Coupon> Add(Guid userId, Guid commerceId, string content)
+        public async Task<Coupon> Add(Guid userId, Guid nodeId, string content)
         {
             var couponId = Guid.NewGuid();
             var coupon = new Coupon
@@ -30,13 +30,13 @@ namespace NG.NotGuiriAPI.Business.Impl
                 Id = couponId,
                 UserId = userId,
                 Content = content,
-                CommerceId = commerceId,
+                NodeId = nodeId,
                 ValidationDate = default,
                 GenerationDate = DateTime.Now,
             };
 
             var anyExistingCouponInLastMonth = _unitOfWork.Repository<Coupon>()
-                .Find(c => c.UserId == userId && c.CommerceId == commerceId
+                .Find(c => c.UserId == userId && c.NodeId == nodeId
                     && c.GenerationDate > coupon.GenerationDate.AddDays(-30))
                 .Any();
 

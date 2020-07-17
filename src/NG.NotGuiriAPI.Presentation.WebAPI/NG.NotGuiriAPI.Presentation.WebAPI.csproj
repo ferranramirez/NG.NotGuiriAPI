@@ -6,6 +6,7 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\NG.NotGuiriAPI.Domain\NG.NotGuiriAPI.Domain.csproj" />
     <ProjectReference Include="..\NG.NotGuiriAPI.Business.Contract\NG.NotGuiriAPI.Business.Contract.csproj" />
     <ProjectReference Include="..\NG.NotGuiriAPI.Business.Impl\NG.NotGuiriAPI.Business.Impl.csproj" />
   </ItemGroup>
@@ -26,10 +27,9 @@
   </ItemGroup>
 
   <ItemGroup Label="NotGuiri Nuget">
-    <PackageReference Include="NG.Common.Library" Version="1.0.4" />
-    <PackageReference Include="NG.Common.Services" Version="1.0.4" />
-    <PackageReference Include="NG.DBManager.Infrastructure.Contracts" Version="1.0.1" />
-    <PackageReference Include="NG.DBManager.Infrastructure.Impl.EF" Version="1.0.1" />
+    <PackageReference Include="NG.Common.Library" Version="1.0.7" />
+    <PackageReference Include="NG.Common.Services" Version="1.0.7" />
+    <PackageReference Include="NG.DBManager.Infrastructure.Contracts" Version="1.0.6" />
+    <PackageReference Include="NG.DBManager.Infrastructure.Impl.EF" Version="1.0.6" />
   </ItemGroup>
-  
 </Project>

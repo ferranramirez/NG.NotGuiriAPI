@@ -33,14 +33,14 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </remarks>
         /// <returns>A bool</returns>
         [AuthUserIdFromToken]
-        [HttpPost("{CommerceId}")]
+        [HttpPost("{NodeId}")]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> AddAsync([FromQuery] string Content, Guid CommerceId,
+        public async Task<IActionResult> AddAsync([FromQuery] string Content, Guid NodeId,
             Guid AuthUserId = default /* Got from the [AuthUserIdFromToken] filter */)
         {
-            return Ok(await _couponService.Add(AuthUserId, CommerceId, Content));
+            return Ok(await _couponService.Add(AuthUserId, NodeId, Content));
         }
     }
 }

@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NG.NotGuiriAPI.Test.E2E", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NG.NotGuiriAPI.Test.UnitTest", "tst\NG.NotGuiriAPI.Test.UnitTest\NG.NotGuiriAPI.Test.UnitTest.csproj", "{CE3C6617-AE38-4E4C-8FE4-945520D62168}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NG.NotGuiriAPI.Domain", "NG.NotGuiriAPI.Domain\NG.NotGuiriAPI.Domain.csproj", "{310AC83C-713B-4527-9764-2E0DD9FC82EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{CE3C6617-AE38-4E4C-8FE4-945520D62168}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE3C6617-AE38-4E4C-8FE4-945520D62168}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE3C6617-AE38-4E4C-8FE4-945520D62168}.Release|Any CPU.Build.0 = Release|Any CPU
+		{310AC83C-713B-4527-9764-2E0DD9FC82EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{310AC83C-713B-4527-9764-2E0DD9FC82EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{310AC83C-713B-4527-9764-2E0DD9FC82EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{310AC83C-713B-4527-9764-2E0DD9FC82EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{2A902468-8B44-45AC-B2E2-C3DF5971D4DD} = {9D3848E4-2F34-4E18-A022-D7566CA4FD61}
 		{2A8118EA-9996-481D-AC1D-291977E0D1D8} = {F40B83DF-879C-4269-AE88-4DB572A9E75E}
 		{CE3C6617-AE38-4E4C-8FE4-945520D62168} = {F40B83DF-879C-4269-AE88-4DB572A9E75E}
+		{310AC83C-713B-4527-9764-2E0DD9FC82EA} = {9D3848E4-2F34-4E18-A022-D7566CA4FD61}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A563C31-DC8F-431C-8E67-D054F5EF2A3D}

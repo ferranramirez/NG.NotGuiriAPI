@@ -6,6 +6,6 @@ namespace NG.NotGuiriAPI.Business.Contract
 {
     public interface ICouponService
     {
-        Task<Coupon> Add(Guid userId, Guid commerceId, string content);
+        Task<Coupon> Add(Guid userId, Guid nodeId, string content);
     }
 }
