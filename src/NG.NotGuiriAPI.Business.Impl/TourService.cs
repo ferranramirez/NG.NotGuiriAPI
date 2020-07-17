@@ -43,6 +43,10 @@ namespace NG.NotGuiriAPI.Business.Impl
 
         public async Task<IEnumerable<Tour>> GetByTagOrName(string filter)
         {
+            if (filter == null)
+            {
+                return await _unitOfWork.Tour.GetAll();
+            }
             return await _unitOfWork.Tour.GetByTagOrName(filter);
         }
     }

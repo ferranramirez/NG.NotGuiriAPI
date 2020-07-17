@@ -123,21 +123,21 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// <summary>
         /// Retrieve all the tours that have a tag or its name containing the Filter string
         /// </summary>
-        /// <param name="Filter">The partial tag or tour name we want to filter the tours by</param>
+        /// <param name="Filter">The partial tag or tour name we want to filter the tours by. It returns all the Tours if there's no filter.</param>
         /// <remarks>
         /// ## Response code meanings
-        /// - 200 - Coupon successfully validated.
+        /// - 200 - Tours successfully retrieved.
         /// - 500 - An internal server error. Something bad and unexpected happened.
         /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
         /// <returns>
         /// A List of Tour
         /// </returns>
-        [HttpGet("GetByTagOrName/{Filter}")]
+        [HttpGet("GetByTagOrName/{Filter?}")]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetByTagOrName(string Filter)
+        public async Task<IActionResult> GetByTagOrName(string Filter = null)
         {
             return Ok(await _tourService.GetByTagOrName(Filter));
         }
