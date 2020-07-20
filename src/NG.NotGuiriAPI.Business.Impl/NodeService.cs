@@ -3,6 +3,8 @@ using NG.DBManager.Infrastructure.Contracts.UnitsOfWork;
 using NG.NotGuiriAPI.Business.Contract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NG.NotGuiriAPI.Business.Impl
 {
@@ -17,12 +19,13 @@ namespace NG.NotGuiriAPI.Business.Impl
 
         public Node Get(Guid id)
         {
-            return _unitOfWork.Repository<Node>().Get(id);
+            return _unitOfWork.Node.Get(id);
         }
 
-        public IEnumerable<Node> GetNodes(Guid tourId)
+        public async Task<IEnumerable<Node>> GetNodes(Guid tourId)
         {
-            return _unitOfWork.Repository<Node>().Find(n => n.TourId == tourId);
+            var nodes = await _unitOfWork.Repository<Node>().GetAll(n => n.Location);
+            return nodes.Where(n => n.TourId == tourId);
         }
     }
 }

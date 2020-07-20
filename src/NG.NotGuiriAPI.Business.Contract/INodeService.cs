@@ -1,6 +1,7 @@
 ﻿using NG.DBManager.Infrastructure.Contracts.Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace NG.NotGuiriAPI.Business.Contract
 {
@@ -8,6 +9,6 @@ namespace NG.NotGuiriAPI.Business.Contract
     {
         Node Get(Guid id);
 
-        IEnumerable<Node> GetNodes(Guid tourId);
+        Task<IEnumerable<Node>> GetNodes(Guid tourId);
     }
 }

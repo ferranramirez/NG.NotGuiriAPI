@@ -6,6 +6,7 @@ using NG.NotGuiriAPI.Business.Contract;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
 {
@@ -57,9 +58,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<Node>), (int)HttpStatusCode.OK)]
-        public IActionResult GetNodes(Guid TourId)
+        public async Task<IActionResult> GetNodes(Guid TourId)
         {
-            return Ok(_nodeService.GetNodes(TourId));
+            return Ok(await _nodeService.GetNodes(TourId));
         }
 
     }
