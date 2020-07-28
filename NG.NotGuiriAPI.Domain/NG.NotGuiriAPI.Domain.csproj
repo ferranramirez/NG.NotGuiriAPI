@@ -5,6 +5,6 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="NG.DBManager.Infrastructure.Contracts" Version="1.0.9" />  
+    <PackageReference Include="NG.DBManager.Infrastructure.Contracts" Version="1.0.10" />  
   </ItemGroup>
 </Project>
