@@ -37,7 +37,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(UserResponse), (int)HttpStatusCode.OK)]
         public IActionResult Get(Guid AuthUserId = default /* Got from the [AuthUserIdFromToken] filter */ )
         {
             return Ok(_userService.Get(AuthUserId));

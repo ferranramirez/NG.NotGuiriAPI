@@ -32,8 +32,7 @@ namespace NG.NotGuiriAPI.Test.UnitTest
             expectedUser = new User
             {
                 Id = rightUserId,
-                Name = "Steve",
-                Surname = "Jobs",
+                Name = "Steve Jobs",
                 Email = "steve@jobs.com",
                 Birthdate = DateTime.Parse("01/01/1970"),
                 Role = Role.Premium
@@ -43,8 +42,7 @@ namespace NG.NotGuiriAPI.Test.UnitTest
             wrongUser = new User
             {
                 Id = wrongUserId,
-                Name = "Bill",
-                Surname = "Gates",
+                Name = "Bill Gates",
                 Email = "bill@gates.com",
                 Birthdate = DateTime.Parse("01/01/1970"),
                 Role = Role.Premium
@@ -87,7 +85,6 @@ namespace NG.NotGuiriAPI.Test.UnitTest
             {
                 Email = "updated@mail.com",
                 Name = "updated",
-                Surname = "updated",
                 Birthdate = DateTime.Now.AddYears(-18),
                 PhoneNumber = "+0000000000",
                 Password = "updated"
@@ -98,7 +95,6 @@ namespace NG.NotGuiriAPI.Test.UnitTest
                 Id = rightUserId,
                 Email = "updated@mail.com",
                 Name = "updated",
-                Surname = "updated",
                 Birthdate = updateUser.Birthdate,
                 PhoneNumber = "+0000000000",
                 Password = "updated"

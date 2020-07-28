@@ -7,7 +7,7 @@ namespace NG.NotGuiriAPI.Business.Contract
 {
     public interface IUserService
     {
-        User Get(Guid userId);
+        UserResponse Get(Guid userId);
         Task<User> Edit(UpdateUserRequest updateUserRequest, Guid userId);
     }
 }

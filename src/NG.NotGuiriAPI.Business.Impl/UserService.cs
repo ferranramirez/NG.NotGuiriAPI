@@ -21,9 +21,21 @@ namespace NG.NotGuiriAPI.Business.Impl
             _passwordHasher = passwordHasher;
         }
 
-        public User Get(Guid userId)
+        public UserResponse Get(Guid userId)
         {
-            return _unitOfWork.User.Get(userId);
+            var user = _unitOfWork.User.Get(userId);
+
+            return new UserResponse
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Birthdate = user.Birthdate,
+                PhoneNumber = user.PhoneNumber,
+                Email = user.Email,
+                Role = user.Role,
+                ImageId = user.ImageId,
+                Commerce = user.Commerce,
+            };
         }
 
         public async Task<User> Edit(UpdateUserRequest updateUserRequest, Guid userId)
@@ -33,7 +45,6 @@ namespace NG.NotGuiriAPI.Business.Impl
             {
                 Id = userId,
                 Name = updateUserRequest.Name,
-                Surname = updateUserRequest.Surname,
                 Birthdate = updateUserRequest.Birthdate,
                 PhoneNumber = updateUserRequest.PhoneNumber,
                 Email = updateUserRequest.Email,
