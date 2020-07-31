@@ -3,6 +3,7 @@ using NG.DBManager.Infrastructure.Contracts.UnitsOfWork;
 using NG.NotGuiriAPI.Business.Contract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace NG.NotGuiriAPI.Business.Impl
@@ -45,7 +46,8 @@ namespace NG.NotGuiriAPI.Business.Impl
         {
             if (filter == null)
             {
-                return await _unitOfWork.Tour.GetAll();
+                var tours = await _unitOfWork.Tour.GetAll();
+                return tours.Where(t => t.IsActive);
             }
             return await _unitOfWork.Tour.GetByTagOrName(filter);
         }
