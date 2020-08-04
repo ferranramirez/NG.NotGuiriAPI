@@ -31,7 +31,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// - 500 - An internal server error. Something bad and unexpected happened.
         /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
-        /// <returns>A bool</returns>
+        /// <returns>The coupon generated</returns>
         [AuthUserIdFromToken]
         [HttpPost("{NodeId}")]
         [ProducesResponseType(typeof(ApiError), 543)]
@@ -41,6 +41,26 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
             Guid AuthUserId = default /* Got from the [AuthUserIdFromToken] filter */)
         {
             return Ok(await _couponService.Add(AuthUserId, NodeId, Content));
+        }
+
+        /// <summary>
+        /// Retrieves a Coupon
+        /// </summary>
+        /// <remarks>
+        /// ## Response code meanings
+        /// - 200 - Coupon successfully retrieved.
+        /// - 400 - The model is not properly built.
+        /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
+        /// </remarks>
+        /// <returns>A coupon</returns>
+        [HttpGet("{CouponId}")]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
+        public IActionResult Get(Guid CouponId)
+        {
+            return Ok(_couponService.Get(CouponId));
         }
     }
 }

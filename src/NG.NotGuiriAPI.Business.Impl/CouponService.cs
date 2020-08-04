@@ -51,5 +51,10 @@ namespace NG.NotGuiriAPI.Business.Impl
 
             return _unitOfWork.Repository<Coupon>().Get(couponId);
         }
+
+        public Coupon Get(Guid couponId)
+        {
+            return _unitOfWork.Repository<Coupon>().Get(couponId);
+        }
     }
 }
