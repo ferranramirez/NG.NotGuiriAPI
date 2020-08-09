@@ -24,7 +24,9 @@ namespace NG.NotGuiriAPI.Business.Impl
 
         public async Task<IEnumerable<Node>> GetNodes(Guid tourId)
         {
-            var nodes = await _unitOfWork.Repository<Node>().GetAll(n => n.Location);
+            var nodes = await _unitOfWork.Repository<Node>()
+                .GetAll(n => n.Location,
+                        n => n.Images);
             return nodes.Where(n => n.TourId == tourId);
         }
     }

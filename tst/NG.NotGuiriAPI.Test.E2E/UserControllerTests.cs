@@ -31,7 +31,7 @@ namespace NG.NotGuiriAPI.Test.E2E
             var client = _httpUtilities.HttpClient;
 
             Guid userId = Guid.Parse("115A81C7-E960-4B88-ACA9-496D80745253");
-            AuthorizedUser authUser = new AuthorizedUser(userId, "basic@test.org", nameof(Role.Basic));
+            AuthorizedUser authUser = new AuthorizedUser(userId, "basic@test.org", nameof(Role.Basic), true);
 
             var token = _authorizationProvider.GetToken(authUser);
 
