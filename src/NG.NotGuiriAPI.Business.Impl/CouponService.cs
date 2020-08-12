@@ -24,37 +24,46 @@ namespace NG.NotGuiriAPI.Business.Impl
 
         public async Task<Coupon> Add(Guid userId, Guid nodeId, string content)
         {
-            var couponId = Guid.NewGuid();
-            var coupon = new Coupon
-            {
-                Id = couponId,
-                UserId = userId,
-                Content = content,
-                NodeId = nodeId,
-                ValidationDate = default,
-                GenerationDate = DateTime.Now,
-            };
+            DateTime time = DateTime.Now;
 
-            var anyExistingCouponInLastMonth = _unitOfWork.Repository<Coupon>()
+            var anyExistingCouponInLast3Hours = _unitOfWork.Coupon
                 .Find(c => c.UserId == userId && c.NodeId == nodeId
-                    && c.GenerationDate > coupon.GenerationDate.AddDays(-30))
+                    && c.GenerationDate > time.AddHours(-3))
                 .Any();
 
-            if (anyExistingCouponInLastMonth)
+            if (anyExistingCouponInLast3Hours)
             {
                 var error = _errors[BusinessErrorType.CouponNotAvailable];
                 throw new NotGuiriBusinessException(error.Message, error.ErrorCode);
             }
 
-            _unitOfWork.Repository<Coupon>().Add(coupon);
+            _unitOfWork.Coupon.InvalidatePastCoupons(userId, nodeId);
+            Guid couponId = await NewCoupon(userId, nodeId, content, time);
             await _unitOfWork.CommitAsync();
 
-            return _unitOfWork.Repository<Coupon>().Get(couponId);
+            return _unitOfWork.Coupon.Get(couponId);
+        }
+
+        private async Task<Guid> NewCoupon(Guid userId, Guid nodeId, string content, DateTime time)
+        {
+            var coupon = new Coupon
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                Content = content,
+                NodeId = nodeId,
+                ValidationDate = default,
+                GenerationDate = time,
+            };
+
+            _unitOfWork.Coupon.Add(coupon);
+
+            return coupon.Id;
         }
 
         public Coupon Get(Guid couponId)
         {
-            return _unitOfWork.Repository<Coupon>().Get(couponId);
+            return _unitOfWork.Coupon.Get(couponId);
         }
     }
 }
