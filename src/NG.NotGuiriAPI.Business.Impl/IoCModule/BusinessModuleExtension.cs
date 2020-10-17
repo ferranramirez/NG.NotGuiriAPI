@@ -29,6 +29,9 @@ namespace NG.NotGuiriAPI.Business.Impl.IoCModule
                     .AddScoped<INodeService, NodeService>()
                     .AddScoped<ICouponService, CouponService>()
                     .AddScoped<IUserService, UserService>()
+                    .AddScoped<ICommerceService, CommerceService>()
+                    .AddScoped<IDealService, DealService>()
+                    .AddScoped<ITagService, TagService>()
                     .AddSingleton<ITokenService, TokenService>()
                     .AddSingleton<IPasswordHasher, PasswordHasher>()
                     .Configure<Dictionary<BusinessErrorType, BusinessErrorObject>>(x => configuration.GetSection("Errors").Bind(x));
