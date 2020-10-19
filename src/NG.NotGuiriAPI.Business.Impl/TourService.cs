@@ -1,6 +1,7 @@
 ﻿using NG.DBManager.Infrastructure.Contracts.Models;
 using NG.DBManager.Infrastructure.Contracts.UnitsOfWork;
 using NG.NotGuiriAPI.Business.Contract;
+using NG.NotGuiriAPI.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,39 +18,96 @@ namespace NG.NotGuiriAPI.Business.Impl
             _unitOfWork = unitOfWork;
         }
 
-        public Tour Get(Guid id)
+        public TourResponse Get(Guid id)
         {
-            return _unitOfWork.Tour.Get(id);
+            var tourWithDealTypes = _unitOfWork.Tour.GetWithDealTypes(id);
+
+            return TourToTourResponse(tourWithDealTypes);
         }
 
-        public async Task<IEnumerable<Tour>> GetFeatured()
+        private static TourResponse TourToTourResponse((Tour, IEnumerable<DealType>) tourWithDealTypes)
         {
-            return await _unitOfWork.Tour.GetFeatured();
+            TourResponse tour = (TourResponse)tourWithDealTypes.Item1;
+            tour.DealTypes = tourWithDealTypes.Item2.ToList();
+            return tour;
         }
 
-        public async Task<IEnumerable<Tour>> GetLastOnesCreated()
+        public async Task<IEnumerable<TourResponse>> GetFeatured()
         {
-            return await _unitOfWork.Tour.GetLastOnesCreated(5);
+            var toursWithDealType = await _unitOfWork.Tour.GetFeatured();
+
+            var tours = new List<TourResponse>();
+
+            toursWithDealType
+                .ToList()
+                .ForEach(t => tours.Add(TourToTourResponse(t)));
+
+            return tours;
         }
 
-        public async Task<IEnumerable<Tour>> GetByFullTag(string fullTag)
+        public async Task<IEnumerable<TourResponse>> GetLastOnesCreated()
         {
-            return await _unitOfWork.Tour.GetByFullTag(fullTag);
+            var toursWithDealType = await _unitOfWork.Tour.GetLastOnesCreated(5);
+
+            var tours = new List<TourResponse>();
+
+            toursWithDealType
+                .ToList()
+                .ForEach(t => tours.Add(TourToTourResponse(t)));
+
+            return tours;
         }
 
-        public async Task<IEnumerable<Tour>> GetByTag(string filter)
+        public async Task<IEnumerable<TourResponse>> GetByFullTag(string fullTag)
         {
-            return await _unitOfWork.Tour.GetByTag(filter);
+            var toursWithDealType = await _unitOfWork.Tour.GetByFullTag(fullTag);
+
+            var tours = new List<TourResponse>();
+
+            toursWithDealType
+                .ToList()
+                .ForEach(t => tours.Add(TourToTourResponse(t)));
+
+            return tours;
         }
 
-        public async Task<IEnumerable<Tour>> GetByTagOrName(string filter)
+        public async Task<IEnumerable<TourResponse>> GetByTag(string filter)
         {
+            var toursWithDealType = await _unitOfWork.Tour.GetByTag(filter);
+
+            var tours = new List<TourResponse>();
+
+            toursWithDealType
+                .ToList()
+                .ForEach(t => tours.Add(TourToTourResponse(t)));
+
+            return tours;
+        }
+
+        public async Task<IEnumerable<TourResponse>> GetByTagOrName(string filter)
+        {
+            var tours = new List<TourResponse>();
+
+            IEnumerable<(Tour, IEnumerable<DealType>)> toursWithDealType;
+
             if (filter == null)
             {
-                var tours = await _unitOfWork.Tour.GetAll();
+                toursWithDealType = await _unitOfWork.Tour.GetAllWithDealTypes();
+
+                toursWithDealType
+                    .ToList()
+                    .ForEach(t => tours.Add(TourToTourResponse(t)));
+
                 return tours.Where(t => t.IsActive);
             }
-            return await _unitOfWork.Tour.GetByTagOrName(filter);
+
+            toursWithDealType = await _unitOfWork.Tour.GetByTagOrName(filter);
+
+            toursWithDealType
+                .ToList()
+                .ForEach(t => tours.Add(TourToTourResponse(t)));
+
+            return tours;
         }
 
         public async Task<IEnumerable<Tour>> GetByCommerceName(string commerceName)
