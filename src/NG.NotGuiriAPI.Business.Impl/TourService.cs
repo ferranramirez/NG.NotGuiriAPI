@@ -109,5 +109,15 @@ namespace NG.NotGuiriAPI.Business.Impl
 
             return tours;
         }
+
+        public async Task<IEnumerable<Tour>> GetByCommerceName(string commerceName)
+        {
+            if (commerceName == null)
+            {
+                var tours = await _unitOfWork.Tour.GetAll();
+                return tours.Where(t => t.IsActive);
+            }
+            return await _unitOfWork.Tour.GetByCommerceName(commerceName);
+        }
     }
 }

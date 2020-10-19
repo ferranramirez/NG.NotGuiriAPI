@@ -140,5 +140,28 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         {
             return Ok(await _tourService.GetByTagOrName(Filter));
         }
+
+
+        /// <summary>
+        /// Retrieve all the tours that have a node correspongind the given Commerce Name
+        /// </summary>
+        /// <param name="Filter">The commerce name we want to filter the tours by. It returns all the Tours if there's no filter.</param>
+        /// <remarks>
+        /// ## Response code meanings
+        /// - 200 - Tours successfully retrieved.
+        /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
+        /// </remarks>
+        /// <returns>
+        /// A List of Tour
+        /// </returns>
+        [HttpGet("GetByCommerceName/{Filter?}")]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetByCommerceName(string Filter = null)
+        {
+            return Ok(await _tourService.GetByCommerceName(Filter));
+        }
     }
 }
