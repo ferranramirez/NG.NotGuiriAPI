@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup Label="NotGuiri Nuget">
-    <PackageReference Include="NG.DBManager.Infrastructure.Contracts" Version="1.0.17" />
-    <PackageReference Include="NG.DBManager.Infrastructure.Impl.EF" Version="1.0.17" />
+    <PackageReference Include="NG.DBManager.Infrastructure.Contracts" Version="1.0.21" />
+    <PackageReference Include="NG.DBManager.Infrastructure.Impl.EF" Version="1.0.21" />
     <PackageReference Include="NG.DBManager.Test.Utilities" Version="1.0.0" />
   </ItemGroup>
 </Project>

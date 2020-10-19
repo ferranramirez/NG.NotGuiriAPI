@@ -119,7 +119,6 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
             return Ok(await _tourService.GetByTag(Filter));
         }
 
-
         /// <summary>
         /// Retrieve all the tours that have a tag or its name containing the Filter string
         /// </summary>
