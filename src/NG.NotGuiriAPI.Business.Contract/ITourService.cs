@@ -13,5 +13,6 @@ namespace NG.NotGuiriAPI.Business.Contract
         Task<IEnumerable<TourResponse>> GetByFullTag(string fullTag);
         Task<IEnumerable<TourResponse>> GetByTag(string filter);
         Task<IEnumerable<TourResponse>> GetByTagOrName(string filter);
+        Task<IEnumerable<TourResponse>> GetByCommerceName(string commerceName);
     }
 }

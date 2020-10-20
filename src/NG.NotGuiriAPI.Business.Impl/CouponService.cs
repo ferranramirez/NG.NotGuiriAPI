@@ -38,13 +38,13 @@ namespace NG.NotGuiriAPI.Business.Impl
             }
 
             _unitOfWork.Coupon.InvalidatePastCoupons(userId, nodeId);
-            Guid couponId = await NewCoupon(userId, nodeId, content, time);
+            Guid couponId = NewCoupon(userId, nodeId, content, time);
             await _unitOfWork.CommitAsync();
 
             return _unitOfWork.Coupon.Get(couponId);
         }
 
-        private async Task<Guid> NewCoupon(Guid userId, Guid nodeId, string content, DateTime time)
+        private Guid NewCoupon(Guid userId, Guid nodeId, string content, DateTime time)
         {
             var coupon = new Coupon
             {

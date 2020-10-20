@@ -110,14 +110,30 @@ namespace NG.NotGuiriAPI.Business.Impl
             return tours;
         }
 
-        public async Task<IEnumerable<Tour>> GetByCommerceName(string commerceName)
+        public async Task<IEnumerable<TourResponse>> GetByCommerceName(string commerceName)
         {
+            var tours = new List<TourResponse>();
+
+            IEnumerable<(Tour, IEnumerable<DealType>)> toursWithDealType;
+
             if (commerceName == null)
             {
-                var tours = await _unitOfWork.Tour.GetAll();
+                toursWithDealType = await _unitOfWork.Tour.GetAllWithDealTypes();
+
+                toursWithDealType
+                    .ToList()
+                    .ForEach(t => tours.Add(TourToTourResponse(t)));
+
                 return tours.Where(t => t.IsActive);
             }
-            return await _unitOfWork.Tour.GetByCommerceName(commerceName);
+
+            toursWithDealType = await _unitOfWork.Tour.GetByCommerceName(commerceName);
+
+            toursWithDealType
+                .ToList()
+                .ForEach(t => tours.Add(TourToTourResponse(t)));
+
+            return tours;
         }
     }
 }
