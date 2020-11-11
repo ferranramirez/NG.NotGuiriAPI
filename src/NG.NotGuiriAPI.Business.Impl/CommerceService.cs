@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NG.NotGuiriAPI.Business.Impl
 {
-    public class CommerceService : ICommerceService
+    public class CommerceService : IReadAllService<Commerce>
     {
         public readonly IAPIUnitOfWork _unitOfWork;
 

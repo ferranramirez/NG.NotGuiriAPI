@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NG.Common.Library.Filters;
+using NG.DBManager.Infrastructure.Contracts.Entities;
 using NG.DBManager.Infrastructure.Contracts.Models;
 using NG.NotGuiriAPI.Business.Contract;
 using System;
@@ -34,7 +35,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [HttpGet("{Id}")]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(Tour), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(TourWithDealType), (int)HttpStatusCode.OK)]
         public IActionResult Get(Guid Id)
         {
             var response = _tourService.Get(Id);
@@ -54,7 +55,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [HttpGet("GetFeatured")]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetFeatured()
         {
             return Ok(await _tourService.GetFeatured());
@@ -73,7 +74,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [HttpGet("GetLastOnesCreated")]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetLastOnesCreated()
         {
             return Ok(await _tourService.GetLastOnesCreated());
@@ -93,7 +94,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [HttpGet("GetByFullTag/{FullTag}")]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetByFullTag(string FullTag)
         {
             return Ok(await _tourService.GetByFullTag(FullTag));
@@ -113,7 +114,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [HttpGet("GetByTag/{Filter}")]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetByTag(string Filter)
         {
             return Ok(await _tourService.GetByTag(Filter));
@@ -135,12 +136,11 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [HttpGet("GetByTagOrName/{Filter?}")]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetByTagOrName(string Filter = null)
         {
             return Ok(await _tourService.GetByTagOrName(Filter));
         }
-
 
         /// <summary>
         /// Retrieve all the tours that have a node correspongind the given Commerce Name
@@ -158,10 +158,32 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [HttpGet("GetByCommerceName/{Filter?}")]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<Tour>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetByCommerceName(string Filter = null)
         {
             return Ok(await _tourService.GetByCommerceName(Filter));
+        }
+
+        /// <summary>
+        /// Retrieve all the tours that have a node that contains a deal from the given DealType
+        /// </summary>
+        /// <param name="Filter">The dealtype we want to filter the tours by. It returns all the Tours if there's no filter.</param>
+        /// <remarks>
+        /// ## Response code meanings
+        /// - 200 - Tours successfully retrieved.
+        /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
+        /// </remarks>
+        /// <returns>
+        /// A List of Tour
+        /// </returns>
+        [HttpGet("GetByDealType/{Filter?}")]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetByDealType(string Filter = null)
+        {
+            return Ok(await _tourService.GetByDealType(Filter));
         }
     }
 }

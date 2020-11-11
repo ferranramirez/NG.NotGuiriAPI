@@ -11,9 +11,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
     [Route("[controller]")]
     public class DealController : ControllerBase
     {
-        private readonly IReadAllService<Tag> _dealService;
+        private readonly IReadAllService<Deal> _dealService;
 
-        public DealController(IReadAllService<Tag> dealService)
+        public DealController(IReadAllService<Deal> dealService)
         {
             _dealService = dealService;
         }

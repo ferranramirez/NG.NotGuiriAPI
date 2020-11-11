@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup Label="NotGuiri Nuget">
-    <PackageReference Include="NG.DBManager.Infrastructure.Contracts" Version="1.0.22" />
-    <PackageReference Include="NG.DBManager.Infrastructure.Impl.EF" Version="1.0.22" />
+    <PackageReference Include="NG.DBManager.Infrastructure.Contracts" Version="1.0.23" />
+    <PackageReference Include="NG.DBManager.Infrastructure.Impl.EF" Version="1.0.23" />
   </ItemGroup>
 
   <ItemGroup>

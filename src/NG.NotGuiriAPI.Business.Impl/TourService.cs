@@ -19,131 +19,63 @@ namespace NG.NotGuiriAPI.Business.Impl
             _unitOfWork = unitOfWork;
         }
 
-        public TourResponse Get(Guid id)
+        public TourWithDealType Get(Guid id)
         {
-            var tourWithDealTypes = _unitOfWork.Tour.GetWithDealTypes(id);
-
-            return TourToTourResponse(tourWithDealTypes);
+            return _unitOfWork.Tour.GetWithDealTypes(id);
         }
 
-        private static TourResponse TourToTourResponse((Tour, IEnumerable<DealType>) tourWithDealTypes)
+        public async Task<IEnumerable<TourWithDealType>> GetFeatured()
         {
-            TourResponse tour = (TourResponse)tourWithDealTypes.Item1;
-            tour.DealTypes = tourWithDealTypes.Item2.ToList();
-            return tour;
+            return await _unitOfWork.Tour.GetFeatured();
         }
 
-        public async Task<IEnumerable<TourResponse>> GetFeatured()
+        public async Task<IEnumerable<TourWithDealType>> GetLastOnesCreated()
         {
-            var toursWithDealType = await _unitOfWork.Tour.GetFeatured();
-
-            var tours = new List<TourResponse>();
-
-            toursWithDealType
-                .ToList()
-                .ForEach(t => tours.Add(TourToTourResponse(t)));
-
-            return tours;
+            return await _unitOfWork.Tour.GetLastOnesCreated(5);
         }
 
-        public async Task<IEnumerable<TourResponse>> GetLastOnesCreated()
+        public async Task<IEnumerable<TourWithDealType>> GetByFullTag(string fullTag)
         {
-            var toursWithDealType = await _unitOfWork.Tour.GetLastOnesCreated(5);
+            if (fullTag == null)
+                return await GetAllActiveTours();
 
-            var tours = new List<TourResponse>();
-
-            toursWithDealType
-                .ToList()
-                .ForEach(t => tours.Add(TourToTourResponse(t)));
-
-            return tours;
+            return await _unitOfWork.Tour.GetByFullTag(fullTag);
         }
 
-        public async Task<IEnumerable<TourResponse>> GetByFullTag(string fullTag)
+        public async Task<IEnumerable<TourWithDealType>> GetByTag(string filter)
         {
-            var toursWithDealType = await _unitOfWork.Tour.GetByFullTag(fullTag);
-
-            var tours = new List<TourResponse>();
-
-            toursWithDealType
-                .ToList()
-                .ForEach(t => tours.Add(TourToTourResponse(t)));
-
-            return tours;
-        }
-
-        public async Task<IEnumerable<TourResponse>> GetByTag(string filter)
-        {
-            var toursWithDealType = await _unitOfWork.Tour.GetByTag(filter);
-
-            var tours = new List<TourResponse>();
-
-            toursWithDealType
-                .ToList()
-                .ForEach(t => tours.Add(TourToTourResponse(t)));
-
-            return tours;
-        }
-
-        public async Task<IEnumerable<TourResponse>> GetByTagOrName(string filter)
-        {
-            var tours = new List<TourResponse>();
-
-            IEnumerable<(Tour, IEnumerable<DealType>)> toursWithDealType;
-
             if (filter == null)
-            {
-                toursWithDealType = await _unitOfWork.Tour.GetAllWithDealTypes();
+                return await GetAllActiveTours();
 
-                toursWithDealType
-                    .ToList()
-                    .ForEach(t => tours.Add(TourToTourResponse(t)));
-
-                return tours.Where(t => t.IsActive);
-            }
-
-            toursWithDealType = await _unitOfWork.Tour.GetByTagOrName(filter);
-
-            toursWithDealType
-                .ToList()
-                .ForEach(t => tours.Add(TourToTourResponse(t)));
-
-            return tours;
+            return await _unitOfWork.Tour.GetByTag(filter);
         }
 
-        public async Task<IEnumerable<TourResponse>> GetByCommerceName(string commerceName)
+        public async Task<IEnumerable<TourWithDealType>> GetByTagOrName(string filter)
         {
-            var tours = new List<TourResponse>();
+            if (filter == null)
+                return await GetAllActiveTours();
 
-            IEnumerable<(Tour, IEnumerable<DealType>)> toursWithDealType;
+            return await _unitOfWork.Tour.GetByTagOrName(filter);
+        }
 
+        private async Task<IEnumerable<TourWithDealType>> GetAllActiveTours()
+        {
+            var tours = await _unitOfWork.Tour.GetAllWithDealTypes();
+            return tours.Where(t => t.IsActive);
+        }
+
+        public async Task<IEnumerable<TourWithDealType>> GetByCommerceName(string commerceName)
+        {
             if (commerceName == null)
-            {
-                toursWithDealType = await _unitOfWork.Tour.GetAllWithDealTypes();
+                return await GetAllActiveTours();
 
-                toursWithDealType
-                    .ToList()
-                    .ForEach(t => tours.Add(TourToTourResponse(t)));
-
-                return tours.Where(t => t.IsActive);
-            }
-
-            toursWithDealType = await _unitOfWork.Tour.GetByCommerceName(commerceName);
-
-            toursWithDealType
-                .ToList()
-                .ForEach(t => tours.Add(TourToTourResponse(t)));
-
-            return tours;
+            return await _unitOfWork.Tour.GetByCommerceName(commerceName);
         }
 
         public async Task<IEnumerable<TourWithDealType>> GetByDealType(string dealType)
         {
-            //if (dealType == null)
-            //{
-            //    toursWithDealType = await _unitOfWork.Tour.GetAllWithDealTypes();
-            //    return tours.Where(t => t.IsActive);
-            //}
+            if (dealType == null)
+                return await GetAllActiveTours();
 
             return await _unitOfWork.Tour.GetByDealType(dealType);
         }

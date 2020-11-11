@@ -11,9 +11,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
     [Route("[controller]")]
     public class CommerceController : ControllerBase
     {
-        private readonly ICommerceService _commerceService;
+        private readonly IReadAllService<Commerce> _commerceService;
 
-        public CommerceController(ICommerceService commerceService)
+        public CommerceController(IReadAllService<Commerce> commerceService)
         {
             _commerceService = commerceService;
         }
