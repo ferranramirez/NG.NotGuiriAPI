@@ -11,9 +11,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
     [Route("[controller]")]
     public class TagController : ControllerBase
     {
-        private readonly ITagService _tagService;
+        private readonly IReadAllService<Tag> _tagService;
 
-        public TagController(ITagService tagService)
+        public TagController(IReadAllService<Tag> tagService)
         {
             _tagService = tagService;
         }

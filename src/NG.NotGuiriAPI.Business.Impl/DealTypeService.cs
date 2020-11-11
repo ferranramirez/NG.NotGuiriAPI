@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace NG.NotGuiriAPI.Business.Impl
 {
-    public class DealService : IReadAllService<Deal>
+    public class DealTypeService : IReadAllService<DealType>
     {
         public readonly IAPIUnitOfWork _unitOfWork;
 
-        public DealService(IAPIUnitOfWork unitOfWork)
+        public DealTypeService(IAPIUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<Deal>> GetAll()
+        public async Task<IEnumerable<DealType>> GetAll()
         {
-            return await _unitOfWork.Repository<Deal>().GetAll();
+            return await _unitOfWork.Repository<DealType>().GetAll();
         }
     }
 }

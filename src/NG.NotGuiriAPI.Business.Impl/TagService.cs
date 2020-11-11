@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NG.NotGuiriAPI.Business.Impl
 {
-    public class TagService : ITagService
+    public class TagService : IReadAllService<Tag>
     {
         public readonly IAPIUnitOfWork _unitOfWork;
 

@@ -9,33 +9,33 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DealController : ControllerBase
+    public class DealTypeController : ControllerBase
     {
-        private readonly IReadAllService<Tag> _dealService;
+        private readonly IReadAllService<Tag> _dealTypeService;
 
-        public DealController(IReadAllService<Tag> dealService)
+        public DealTypeController(IReadAllService<Tag> dealTypeService)
         {
-            _dealService = dealService;
+            _dealTypeService = dealTypeService;
         }
 
         /// <summary>
-        /// Retrieve all deals
+        /// Retrieve all DealTypes
         /// </summary>
         /// <remarks>
         /// ## Response code meanings
-        /// - 200 - Deals successfully retrieved.
+        /// - 200 - DealTypes successfully retrieved.
         /// - 500 - An internal server error. Something bad and unexpected happened.
         /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
-        /// <returns>All Deals</returns>
+        /// <returns>All DealTypes</returns>
 
         [HttpGet]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(Deal), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(DealType), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _dealService.GetAll());
+            return Ok(await _dealTypeService.GetAll());
         }
     }
 }

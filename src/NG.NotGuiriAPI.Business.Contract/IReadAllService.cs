@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace NG.NotGuiriAPI.Business.Contract
 {
-    public interface ITagService
+    public interface IReadAllService<T>
     {
-        Task<IEnumerable<Tag>> GetAll();
+        Task<IEnumerable<T>> GetAll();
     }
 }

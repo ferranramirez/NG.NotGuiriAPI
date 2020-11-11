@@ -1,4 +1,5 @@
-﻿using NG.DBManager.Infrastructure.Contracts.Models;
+﻿using NG.DBManager.Infrastructure.Contracts.Entities;
+using NG.DBManager.Infrastructure.Contracts.Models;
 using NG.DBManager.Infrastructure.Contracts.UnitsOfWork;
 using NG.NotGuiriAPI.Business.Contract;
 using NG.NotGuiriAPI.Domain;
@@ -134,6 +135,17 @@ namespace NG.NotGuiriAPI.Business.Impl
                 .ForEach(t => tours.Add(TourToTourResponse(t)));
 
             return tours;
+        }
+
+        public async Task<IEnumerable<TourWithDealType>> GetByDealType(string dealType)
+        {
+            //if (dealType == null)
+            //{
+            //    toursWithDealType = await _unitOfWork.Tour.GetAllWithDealTypes();
+            //    return tours.Where(t => t.IsActive);
+            //}
+
+            return await _unitOfWork.Tour.GetByDealType(dealType);
         }
     }
 }
