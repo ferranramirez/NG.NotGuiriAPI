@@ -34,14 +34,6 @@ namespace NG.NotGuiriAPI.Business.Impl
             return await _unitOfWork.Tour.GetLastOnesCreated(5);
         }
 
-        public async Task<IEnumerable<TourWithDealType>> GetByFullTag(string fullTag)
-        {
-            if (fullTag == null)
-                return await GetAllActiveTours();
-
-            return await _unitOfWork.Tour.GetByFullTag(fullTag);
-        }
-
         public async Task<IEnumerable<TourWithDealType>> GetByTag(string filter)
         {
             if (filter == null)
@@ -78,6 +70,14 @@ namespace NG.NotGuiriAPI.Business.Impl
                 return await GetAllActiveTours();
 
             return await _unitOfWork.Tour.GetByDealType(dealType);
+        }
+
+        public async Task<IEnumerable<TourWithDealType>> GetByEverything(string filter)
+        {
+            if (filter == null)
+                return await GetAllActiveTours();
+
+            return await _unitOfWork.Tour.GetByEverything(filter);
         }
     }
 }

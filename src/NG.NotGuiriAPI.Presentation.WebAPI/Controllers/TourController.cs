@@ -81,32 +81,12 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieve all the tours that have the tag FullTag
+        /// Retrieve all the tours that have a tag that is exactly like the Filter string
         /// </summary>
-        /// <param name="FullTag">The explicit tag we want to filter the tours by</param>
+        /// <param name="Filter">The tag we want to filter the tours by</param>
         /// <remarks>
         /// ## Response code meanings
-        /// - 200 - Coupon successfully validated.
-        /// - 500 - An internal server error. Something bad and unexpected happened.
-        /// - 543 - A handled error. This error was expected, check the message.
-        /// </remarks>
-        /// <returns>A List of Tour</returns>
-        [HttpGet("GetByFullTag/{FullTag}")]
-        [ProducesResponseType(typeof(ApiError), 543)]
-        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetByFullTag(string FullTag)
-        {
-            return Ok(await _tourService.GetByFullTag(FullTag));
-        }
-
-        /// <summary>
-        /// Retrieve all the tours that have a tag that contains the Filter string
-        /// </summary>
-        /// <param name="Filter">The partial tag we want to filter the tours by</param>
-        /// <remarks>
-        /// ## Response code meanings
-        /// - 200 - Coupon successfully validated.
+        /// - 200 - Tours successfully retrieved.
         /// - 500 - An internal server error. Something bad and unexpected happened.
         /// - 543 - A handled error. This error was expected, check the message.
         /// </remarks>
@@ -184,6 +164,28 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         public async Task<IActionResult> GetByDealType(string Filter = null)
         {
             return Ok(await _tourService.GetByDealType(Filter));
+        }
+
+        /// <summary>
+        /// Retrieve all the tours that have a Deal, Node, DealType... that matches the filter.
+        /// </summary>
+        /// <param name="Filter">The filter we want to filter the tours by. It returns all the Tours if there's no filter.</param>
+        /// <remarks>
+        /// ## Response code meanings
+        /// - 200 - Tours successfully retrieved.
+        /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
+        /// </remarks>
+        /// <returns>
+        /// A List of Tour
+        /// </returns>
+        [HttpGet("GetByEverything/{Filter?}")]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetByEverything(string Filter = null)
+        {
+            return Ok(await _tourService.GetByEverything(Filter));
         }
     }
 }
