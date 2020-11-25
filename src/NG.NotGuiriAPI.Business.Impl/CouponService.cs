@@ -65,5 +65,10 @@ namespace NG.NotGuiriAPI.Business.Impl
         {
             return _unitOfWork.Coupon.Get(couponId);
         }
+
+        public async Task<Coupon> GetLastByNodeFromUser(Guid userId, Guid couponId)
+        {
+            return await _unitOfWork.Coupon.GetLastByNode(userId, couponId);
+        }
     }
 }

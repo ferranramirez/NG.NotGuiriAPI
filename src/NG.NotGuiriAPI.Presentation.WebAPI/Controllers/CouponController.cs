@@ -62,5 +62,27 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         {
             return Ok(_couponService.Get(CouponId));
         }
+
+        /// <summary>
+        /// Retrieves the Last Coupon for the given node
+        /// </summary>
+        /// <remarks>
+        /// ## Response code meanings
+        /// - 200 - Coupon successfully retrieved.
+        /// - 400 - The model is not properly built.
+        /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
+        /// </remarks>
+        /// <returns>A coupon</returns>
+        [AuthUserIdFromToken]
+        [HttpGet("Last/{NodeId}")]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Get(Guid NodeId,
+            Guid AuthUserId = default /* Got from the [AuthUserIdFromToken] filter */)
+        {
+            return Ok(await _couponService.GetLastByNodeFromUser(AuthUserId, NodeId));
+        }
     }
 }

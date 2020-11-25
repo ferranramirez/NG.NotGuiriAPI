@@ -1,6 +1,7 @@
 ﻿using NG.DBManager.Infrastructure.Contracts.Models;
 using NG.DBManager.Infrastructure.Contracts.Models.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace NG.NotGuiriAPI.Domain
 {
@@ -13,7 +14,7 @@ namespace NG.NotGuiriAPI.Domain
         public string Email { get; set; }
         public Role Role { get; set; }
         public Guid? ImageId { get; set; }
-        public Commerce Commerce { get; set; }
+        public IList<Commerce> Commerce { get; set; }
         public Image Image { get; set; }
     }
 }

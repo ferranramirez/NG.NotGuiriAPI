@@ -17,7 +17,7 @@ namespace NG.NotGuiriAPI.Business.Impl
 
         public async Task<IEnumerable<Commerce>> GetAll()
         {
-            return await _unitOfWork.Repository<Commerce>().GetAll();
+            return await _unitOfWork.Commerce.GetAll();
         }
     }
 }
