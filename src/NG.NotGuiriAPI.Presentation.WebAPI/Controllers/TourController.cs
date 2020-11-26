@@ -167,7 +167,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieve all the tours that have a Deal, Node, DealType... that matches the filter.
+        /// Retrieve all the tours that have a Deal, Node, DealType, etc that matches the filter.
         /// </summary>
         /// <param name="Filter">The filter we want to filter the tours by. It returns all the Tours if there's no filter.</param>
         /// <remarks>
