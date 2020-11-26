@@ -33,7 +33,6 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </remarks>
         /// <returns>A Node</returns>
 
-        [Authorize(Roles = "Basic, Standard, Premium, Admin")]
         [HttpGet("{Id}")]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
