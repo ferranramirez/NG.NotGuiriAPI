@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
 {
-    [Authorize(Roles = "Basic, Standard, Premium, Admin")]
     [ApiController]
     [Route("[controller]")]
     public class NodeController : ControllerBase
@@ -34,6 +33,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// </remarks>
         /// <returns>A Node</returns>
 
+        [Authorize(Roles = "Basic, Standard, Premium, Admin")]
         [HttpGet("{Id}")]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
