@@ -16,5 +16,6 @@ namespace NG.NotGuiriAPI.Business.Contract
         Task<IEnumerable<TourWithDealType>> GetByCommerceName(string commerceName);
         Task<IEnumerable<TourWithDealType>> GetByDealType(string dealType);
         Task<IEnumerable<TourWithDealType>> GetByEverything(string filter);
+        Task<IEnumerable<TourWithDealType>> GetByDistance(LocationRequest location);
     }
 }
