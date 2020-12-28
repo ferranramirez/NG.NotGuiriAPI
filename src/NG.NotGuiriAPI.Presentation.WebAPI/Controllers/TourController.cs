@@ -192,7 +192,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// <summary>
         /// Retrieve all the tours that start in the given radius from the given coordinates.
         /// </summary>
-        /// <param name="Filter">The filter we want to filter the tours by. It returns all the Tours if there's no filter.</param>
+        /// <param name="Location">The coordinates and the radius (in meters) of the area to get the tours from.</param>
         /// <remarks>
         /// ## Response code meanings
         /// - 200 - Tours successfully retrieved.
