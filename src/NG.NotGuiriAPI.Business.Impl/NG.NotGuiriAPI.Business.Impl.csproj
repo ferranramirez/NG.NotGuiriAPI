@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GeoCoordinate.NetCore" Version="1.0.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.4" />
@@ -20,9 +21,9 @@
   </ItemGroup>
 
   <ItemGroup Label="NotGuiri Nuget">
-    <PackageReference Include="NG.DBManager.Infrastructure.Contracts" Version="1.0.28" />
-    <PackageReference Include="NG.DBManager.Infrastructure.Impl.EF" Version="1.0.28" />
+    <PackageReference Include="NG.DBManager.Infrastructure.Contracts" Version="1.0.31" />
+    <PackageReference Include="NG.DBManager.Infrastructure.Impl.EF" Version="1.0.31" />
     <PackageReference Include="NG.Common.Library" Version="1.0.11" />
     <PackageReference Include="NG.Common.Services" Version="1.0.11" />
-  </ItemGroup>  
+  </ItemGroup>
 </Project>

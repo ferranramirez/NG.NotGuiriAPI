@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GeoCoordinatePortable;
 
 namespace NG.NotGuiriAPI.Business.Impl
 {
@@ -78,6 +79,23 @@ namespace NG.NotGuiriAPI.Business.Impl
                 return await GetAllActiveTours();
 
             return await _unitOfWork.Tour.GetByEverything(filter);
+        }
+
+        public async Task<IEnumerable<TourWithDealType>> GetByDistance(LocationRequest location)
+        {
+            var tours = await _unitOfWork.Tour.GetAllWithDealTypesAndLocation();
+
+            var toursByDistance =
+                tours.Where(tour => GetDistance(new GeoCoordinate(location.Latitude, location.Longitude),
+                    new GeoCoordinate((double)tour.Nodes.First().Location.Latitude,
+                        (double)tour.Nodes.First().Location.Longitude)) <= location.Radius);
+
+            return toursByDistance;
+        }
+
+        private double GetDistance(GeoCoordinate pin1, GeoCoordinate pin2)
+        {
+            return pin1.GetDistanceTo(pin2);
         }
     }
 }

@@ -3,6 +3,7 @@ using NG.Common.Library.Filters;
 using NG.DBManager.Infrastructure.Contracts.Entities;
 using NG.DBManager.Infrastructure.Contracts.Models;
 using NG.NotGuiriAPI.Business.Contract;
+using NG.NotGuiriAPI.Domain;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -186,6 +187,28 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         public async Task<IActionResult> GetByEverything(string Filter = null)
         {
             return Ok(await _tourService.GetByEverything(Filter));
+        }
+
+        /// <summary>
+        /// Retrieve all the tours that start in the given radius from the given coordinates.
+        /// </summary>
+        /// <param name="Filter">The filter we want to filter the tours by. It returns all the Tours if there's no filter.</param>
+        /// <remarks>
+        /// ## Response code meanings
+        /// - 200 - Tours successfully retrieved.
+        /// - 500 - An internal server error. Something bad and unexpected happened.
+        /// - 543 - A handled error. This error was expected, check the message.
+        /// </remarks>
+        /// <returns>
+        /// A List of Tour
+        /// </returns>
+        [HttpPost("GetByDistance")]
+        [ProducesResponseType(typeof(ApiError), 543)]
+        [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetByDistance(LocationRequest Location)
+        {
+            return Ok(await _tourService.GetByDistance(Location));
         }
     }
 }
