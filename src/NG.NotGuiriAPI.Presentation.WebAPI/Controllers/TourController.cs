@@ -190,7 +190,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieve all the tours that start in the given radius from the given coordinates.
+        /// Retrieve all the tours THAT START around the given radius from the given coordinates.
         /// </summary>
         /// <param name="Location">The coordinates and the radius (in meters) of the area to get the tours from.</param>
         /// <remarks>

@@ -86,9 +86,14 @@ namespace NG.NotGuiriAPI.Business.Impl
             var tours = await _unitOfWork.Tour.GetAllWithDealTypesAndLocation();
 
             var toursByDistance =
-                tours.Where(tour => GetDistance(new GeoCoordinate(location.Latitude, location.Longitude),
-                    new GeoCoordinate((double)tour.Nodes.First().Location.Latitude,
-                        (double)tour.Nodes.First().Location.Longitude)) <= location.Radius);
+                tours.Where(tour =>
+                {
+                    Location nodeLocation = tour.Nodes.OrderBy(n => n.Order).First().Location;
+
+                    return GetDistance(
+                        new GeoCoordinate(location.Latitude, location.Longitude),
+                        new GeoCoordinate((double)nodeLocation.Latitude, (double)nodeLocation.Longitude)) <= location.Radius;
+                });
 
             return toursByDistance;
         }
