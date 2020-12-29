@@ -57,9 +57,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetFeatured()
+        public async Task<IActionResult> GetFeatured([FromQuery] int? pageNumber = null, [FromQuery] int? pageSize = null)
         {
-            return Ok(await _tourService.GetFeatured());
+            return Ok(await _tourService.GetFeatured(pageNumber, pageSize));
         }
 
         /// <summary>
@@ -76,9 +76,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetLastOnesCreated()
+        public async Task<IActionResult> GetLastOnesCreated([FromQuery] int? pageNumber = null, [FromQuery] int? pageSize = null)
         {
-            return Ok(await _tourService.GetLastOnesCreated());
+            return Ok(await _tourService.GetLastOnesCreated(pageNumber, pageSize));
         }
 
         /// <summary>
@@ -96,9 +96,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetByTag(string Filter)
+        public async Task<IActionResult> GetByTag(string Filter, [FromQuery] int? pageNumber = null, [FromQuery] int? pageSize = null)
         {
-            return Ok(await _tourService.GetByTag(Filter));
+            return Ok(await _tourService.GetByTag(Filter, pageNumber, pageSize));
         }
 
         /// <summary>
@@ -118,9 +118,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetByTagOrName(string Filter = null)
+        public async Task<IActionResult> GetByTagOrName(string Filter = null, [FromQuery] int? pageNumber = null, [FromQuery] int? pageSize = null)
         {
-            return Ok(await _tourService.GetByTagOrName(Filter));
+            return Ok(await _tourService.GetByTagOrName(Filter, pageNumber, pageSize));
         }
 
         /// <summary>
@@ -140,9 +140,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetByCommerceName(string Filter = null)
+        public async Task<IActionResult> GetByCommerceName(string Filter = null, [FromQuery] int? pageNumber = null, [FromQuery] int? pageSize = null)
         {
-            return Ok(await _tourService.GetByCommerceName(Filter));
+            return Ok(await _tourService.GetByCommerceName(Filter, pageNumber, pageSize));
         }
 
         /// <summary>
@@ -162,9 +162,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetByDealType(string Filter = null)
+        public async Task<IActionResult> GetByDealType(string Filter = null, [FromQuery] int? pageNumber = null, [FromQuery] int? pageSize = null)
         {
-            return Ok(await _tourService.GetByDealType(Filter));
+            return Ok(await _tourService.GetByDealType(Filter, pageNumber, pageSize));
         }
 
         /// <summary>
@@ -184,9 +184,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetByEverything(string Filter = null)
+        public async Task<IActionResult> GetByEverything(string Filter = null, [FromQuery] int? pageNumber = null, [FromQuery] int? pageSize = null)
         {
-            return Ok(await _tourService.GetByEverything(Filter));
+            return Ok(await _tourService.GetByEverything(Filter, pageNumber, pageSize));
         }
 
         /// <summary>
@@ -206,9 +206,9 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<TourWithDealType>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetByDistance(LocationRequest Location)
+        public async Task<IActionResult> GetByDistance(LocationRequest Location, [FromQuery] int? pageNumber = null, [FromQuery] int? pageSize = null)
         {
-            return Ok(await _tourService.GetByDistance(Location));
+            return Ok(await _tourService.GetByDistance(Location, pageNumber, pageSize));
         }
     }
 }
