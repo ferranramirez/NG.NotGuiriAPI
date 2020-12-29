@@ -25,65 +25,65 @@ namespace NG.NotGuiriAPI.Business.Impl
             return _unitOfWork.Tour.GetWithDealTypes(id);
         }
 
-        public async Task<IEnumerable<TourWithDealType>> GetFeatured()
+        public async Task<IEnumerable<TourWithDealType>> GetFeatured(int? pageNumber, int? pageSize)
         {
-            return await _unitOfWork.Tour.GetFeatured();
+            return await _unitOfWork.Tour.GetFeatured(pageNumber, pageSize);
         }
 
-        public async Task<IEnumerable<TourWithDealType>> GetLastOnesCreated()
+        public async Task<IEnumerable<TourWithDealType>> GetLastOnesCreated(int? pageNumber, int? pageSize)
         {
-            return await _unitOfWork.Tour.GetLastOnesCreated(5);
+            return await _unitOfWork.Tour.GetLastOnesCreated(5, pageNumber, pageSize);
         }
 
-        public async Task<IEnumerable<TourWithDealType>> GetByTag(string filter)
+        public async Task<IEnumerable<TourWithDealType>> GetByTag(string filter, int? pageNumber, int? pageSize)
         {
             if (filter == null)
-                return await GetAllActiveTours();
+                return await GetAllActiveTours(pageNumber, pageSize);
 
             return await _unitOfWork.Tour.GetByTag(filter);
         }
 
-        public async Task<IEnumerable<TourWithDealType>> GetByTagOrName(string filter)
+        public async Task<IEnumerable<TourWithDealType>> GetByTagOrName(string filter, int? pageNumber, int? pageSize)
         {
             if (filter == null)
-                return await GetAllActiveTours();
+                return await GetAllActiveTours(pageNumber, pageSize);
 
             return await _unitOfWork.Tour.GetByTagOrName(filter);
         }
 
-        private async Task<IEnumerable<TourWithDealType>> GetAllActiveTours()
+        private async Task<IEnumerable<TourWithDealType>> GetAllActiveTours(int? pageNumber, int? pageSize)
         {
-            var tours = await _unitOfWork.Tour.GetAllWithDealTypes();
+            var tours = await _unitOfWork.Tour.GetAllWithDealTypes(pageNumber, pageSize);
             return tours.Where(t => t.IsActive);
         }
 
-        public async Task<IEnumerable<TourWithDealType>> GetByCommerceName(string commerceName)
+        public async Task<IEnumerable<TourWithDealType>> GetByCommerceName(string commerceName, int? pageNumber, int? pageSize)
         {
             if (commerceName == null)
-                return await GetAllActiveTours();
+                return await GetAllActiveTours(pageNumber, pageSize);
 
             return await _unitOfWork.Tour.GetByCommerceName(commerceName);
         }
 
-        public async Task<IEnumerable<TourWithDealType>> GetByDealType(string dealType)
+        public async Task<IEnumerable<TourWithDealType>> GetByDealType(string dealType, int? pageNumber, int? pageSize)
         {
             if (dealType == null)
-                return await GetAllActiveTours();
+                return await GetAllActiveTours(pageNumber, pageSize);
 
             return await _unitOfWork.Tour.GetByDealType(dealType);
         }
 
-        public async Task<IEnumerable<TourWithDealType>> GetByEverything(string filter)
+        public async Task<IEnumerable<TourWithDealType>> GetByEverything(string filter, int? pageNumber, int? pageSize)
         {
             if (filter == null)
-                return await GetAllActiveTours();
+                return await GetAllActiveTours(pageNumber, pageSize);
 
             return await _unitOfWork.Tour.GetByEverything(filter);
         }
 
-        public async Task<IEnumerable<TourWithDealType>> GetByDistance(LocationRequest location)
+        public async Task<IEnumerable<TourWithDealType>> GetByDistance(LocationRequest location, int? pageNumber, int? pageSize)
         {
-            var tours = await _unitOfWork.Tour.GetAllWithDealTypesAndLocation();
+            var tours = await _unitOfWork.Tour.GetAllWithDealTypesAndLocation(pageNumber, pageSize);
 
             var toursByDistance =
                 tours.Where(tour =>
