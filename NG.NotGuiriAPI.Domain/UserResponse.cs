@@ -14,7 +14,7 @@ namespace NG.NotGuiriAPI.Domain
         public string Email { get; set; }
         public Role Role { get; set; }
         public Guid? ImageId { get; set; }
-        public IList<Commerce> Commerce { get; set; }
+        public IList<Commerce> Commerces { get; set; }
         public Image Image { get; set; }
     }
 }

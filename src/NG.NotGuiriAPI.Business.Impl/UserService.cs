@@ -34,7 +34,7 @@ namespace NG.NotGuiriAPI.Business.Impl
                 Email = user.Email,
                 Role = user.Role,
                 ImageId = user.ImageId,
-                Commerce = user.Commerce,
+                Commerces = user.Commerces,
             };
         }
 
