@@ -30,6 +30,7 @@ namespace NG.NotGuiriAPI.Business.Impl.IoCModule
                     .AddScoped<INodeService, NodeService>()
                     .AddScoped<ICouponService, CouponService>()
                     .AddScoped<IUserService, UserService>()
+                    .AddScoped<IVisitService, VisitService>()
                     .AddScoped<IReadAllService<Commerce>, CommerceService>()
                     .AddScoped<IReadAllService<Deal>, DealService>()
                     .AddScoped<IReadAllService<DealType>, DealTypeService>()

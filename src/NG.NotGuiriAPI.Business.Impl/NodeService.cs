@@ -26,7 +26,8 @@ namespace NG.NotGuiriAPI.Business.Impl
         {
             var nodes = await _unitOfWork.Repository<Node>()
                 .GetAll(n => n.Location,
-                        n => n.Images);
+                        n => n.Images,
+                        n => n.Deal);
             return nodes.Where(n => n.TourId == tourId);
         }
     }
