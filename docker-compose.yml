@@ -5,6 +5,6 @@ services:
     build:
       context: .
       args: 
-        - "PAT=gnvtyzrtclmgvojxxu4xenmwec3nmv3wbiehi5dum57nlx5qunva"
+        - "PAT=${PAT}"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
