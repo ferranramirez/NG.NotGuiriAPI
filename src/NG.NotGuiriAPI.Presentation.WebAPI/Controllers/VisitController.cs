@@ -32,7 +32,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// <returns>The id of the new Visit</returns>
         [Authorize]
         [AuthUserIdFromToken]
-        [HttpPost]
+        [HttpPost("{CommerceId}/{TourId}")]
         [ProducesResponseType(typeof(ApiError), 543)]
         [ProducesResponseType(typeof(ApiError), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(Visit), (int)HttpStatusCode.OK)]
