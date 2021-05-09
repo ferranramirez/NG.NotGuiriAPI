@@ -46,6 +46,8 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// <summary>
         /// Retrieve all the tours set as featured
         /// </summary>
+        /// <param name="pageNumber">Number of the page to start by to limit the response</param>
+        /// <param name="pageSize">Maximum size of the response</param>
         /// <remarks>
         /// ## Response code meanings
         /// - 200 - Coupon successfully validated.
@@ -65,6 +67,8 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// <summary>
         /// Retrieve the last 5 tours created
         /// </summary>
+        /// <param name="pageNumber">Number of the page to start by to limit the response</param>
+        /// <param name="pageSize">Maximum size of the response</param>
         /// <remarks>
         /// ## Response code meanings
         /// - 200 - Coupon successfully validated.
@@ -85,6 +89,8 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// Retrieve all the tours that have a tag that is exactly like the Filter string
         /// </summary>
         /// <param name="Filter">The tag we want to filter the tours by</param>
+        /// <param name="pageNumber">Number of the page to start by to limit the response</param>
+        /// <param name="pageSize">Maximum size of the response</param>
         /// <remarks>
         /// ## Response code meanings
         /// - 200 - Tours successfully retrieved.
@@ -105,6 +111,8 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// Retrieve all the tours that have a tag or its name containing the Filter string
         /// </summary>
         /// <param name="Filter">The partial tag or tour name we want to filter the tours by. It returns all the Tours if there's no filter.</param>
+        /// <param name="pageNumber">Number of the page to start by to limit the response</param>
+        /// <param name="pageSize">Maximum size of the response</param>
         /// <remarks>
         /// ## Response code meanings
         /// - 200 - Tours successfully retrieved.
@@ -127,6 +135,8 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// Retrieve all the tours that have a node correspongind the given Commerce Name
         /// </summary>
         /// <param name="Filter">The commerce name we want to filter the tours by. It returns all the Tours if there's no filter.</param>
+        /// <param name="pageNumber">Number of the page to start by to limit the response</param>
+        /// <param name="pageSize">Maximum size of the response</param>
         /// <remarks>
         /// ## Response code meanings
         /// - 200 - Tours successfully retrieved.
@@ -149,6 +159,8 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// Retrieve all the tours that have a node that contains a deal from the given DealType
         /// </summary>
         /// <param name="Filter">The dealtype we want to filter the tours by. It returns all the Tours if there's no filter.</param>
+        /// <param name="pageNumber">Number of the page to start by to limit the response</param>
+        /// <param name="pageSize">Maximum size of the response</param>
         /// <remarks>
         /// ## Response code meanings
         /// - 200 - Tours successfully retrieved.
@@ -171,6 +183,8 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// Retrieve all the tours that have a Deal, Node, DealType, etc that matches the filter.
         /// </summary>
         /// <param name="Filter">The filter we want to filter the tours by. It returns all the Tours if there's no filter.</param>
+        /// <param name="pageNumber">Number of the page to start by to limit the response</param>
+        /// <param name="pageSize">Maximum size of the response</param>
         /// <remarks>
         /// ## Response code meanings
         /// - 200 - Tours successfully retrieved.
@@ -193,6 +207,8 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
         /// Retrieve all the tours THAT START around the given radius from the given coordinates.
         /// </summary>
         /// <param name="Location">The coordinates and the radius (in meters) of the area to get the tours from.</param>
+        /// <param name="pageNumber">Number of the page to start by to limit the response</param>
+        /// <param name="pageSize">Maximum size of the response</param>
         /// <remarks>
         /// ## Response code meanings
         /// - 200 - Tours successfully retrieved.

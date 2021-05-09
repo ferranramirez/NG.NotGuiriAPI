@@ -22,7 +22,7 @@ namespace NG.NotGuiriAPI.Test.UnitTest
         }
 
         [Fact(Skip = "Doesn't work at the moment")]
-        public async Task GetFeaturedToursTest()
+        public void GetFeaturedToursTest()
         {
             ////Arrange            
             //IEnumerable<Tour> expected = new List<TourResponse>() { new TourResponse { Id = Guid.NewGuid() } };
