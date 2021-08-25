@@ -40,21 +40,18 @@ namespace NG.NotGuiriAPI.Business.Impl
 
         public async Task<User> Edit(UpdateUserRequest updateUserRequest, Guid userId)
         {
-            var password = (updateUserRequest.Password != null) ? _passwordHasher.Hash(updateUserRequest.Password) : null;
-            var user = new User
-            {
-                Id = userId,
-                Name = updateUserRequest.Name,
-                Birthdate = updateUserRequest.Birthdate,
-                PhoneNumber = updateUserRequest.PhoneNumber,
-                Email = updateUserRequest.Email,
-                Password = password
-            };
+            var user = _unitOfWork.User.Get(userId);
 
-            var updatedUser = _unitOfWork.User.Edit(user);
+            if (updateUserRequest.Name != null) user.Name = updateUserRequest.Name;
+            if (updateUserRequest.Birthdate != null) user.Birthdate = updateUserRequest.Birthdate;
+            if (updateUserRequest.PhoneNumber != null) user.PhoneNumber = updateUserRequest.PhoneNumber;
+            if (updateUserRequest.Email != null) user.Email = updateUserRequest.Email;
+            //if (updateUserRequest.Password != null) standardUser.Password = _passwordHasher.Hash(updateUserRequest.Password);
+
+            _unitOfWork.User.Update(user);
             await _unitOfWork.CommitAsync();
 
-            return updatedUser;
+            return _unitOfWork.User.Get(userId);
         }
     }
 }
