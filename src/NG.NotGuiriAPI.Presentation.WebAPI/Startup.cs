@@ -1,12 +1,15 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using NG.Common.Library.Extensions;
 using NG.Common.Library.Filters;
 using NG.NotGuiriAPI.Business.Impl.IoCModule;
 using System.Reflection;
+using System.Text;
 
 namespace NG.NotGuiriAPI.Presentation.WebAPI
 {
@@ -33,7 +36,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             services.AddSwaggerDocumentation(Configuration.GetSection("Documentation"), xmlFile);
 
-            services.AddJwtAuthentication(Configuration.GetSection("Secrets"));
+            services.AddJwtAuthentication(Configuration.GetSection("Token"));
 
             services.AddBusinessServices(Configuration);
         }
@@ -57,7 +60,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
 
             app.UseAuthorization();
 
-            app.UseLogScopeMiddleware();
+            /*app.UseLogScopeMiddleware()*/;
 
             app.UseEndpoints(endpoints =>
             {
