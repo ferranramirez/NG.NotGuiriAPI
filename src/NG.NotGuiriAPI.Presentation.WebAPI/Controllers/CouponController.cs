@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NG.NotGuiriAPI.Presentation.WebAPI.Controllers
 {
-    [Authorize(Roles = "Basic, Standard, Premium, Admin")]
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class CouponController : ControllerBase

@@ -15,8 +15,13 @@
   <ItemGroup Label="Startup">
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.6.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="3.1.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI" Version="3.1.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="3.1.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup Label="Serilog">
@@ -27,9 +32,10 @@
   </ItemGroup>
 
   <ItemGroup Label="NotGuiri Nuget">
-    <PackageReference Include="NG.Common.Services" Version="1.0.15" />
-    <PackageReference Include="NG.Common.Library" Version="1.0.15" />
-    <PackageReference Include="NG.DBManager.Infrastructure.Contracts" Version="1.0.56" />
-    <PackageReference Include="NG.DBManager.Infrastructure.Impl.EF" Version="1.0.56" />
+    <PackageReference Include="NG.Common.Services" Version="1.0.18" />
+    <PackageReference Include="NG.Common.Library" Version="1.0.18" />
+    <PackageReference Include="NG.DBManager.Infrastructure.Contracts" Version="1.0.60" />
+    <PackageReference Include="NG.DBManager.Infrastructure.Impl.EF" Version="1.0.60" />
   </ItemGroup>
+
 </Project>

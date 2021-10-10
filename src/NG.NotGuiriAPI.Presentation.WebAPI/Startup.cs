@@ -60,7 +60,7 @@ namespace NG.NotGuiriAPI.Presentation.WebAPI
 
             app.UseAuthorization();
 
-            /*app.UseLogScopeMiddleware()*/;
+            //app.UseLogScopeMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
